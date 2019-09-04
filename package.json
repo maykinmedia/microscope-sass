@@ -1,0 +1,24 @@
+{
+  "name": "microscope-sass",
+  "version": "0.0.1",
+  "description": "Sass microframework for building scoped user interfaces.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eyeglass-module",
+    "microframework",
+    "sass",
+    "scoped"
+  ],
+  "author": {
+    "name": "Maykin Media",
+    "url": "https://www.maykinmedia.nl"
+  },
+  "license": "MIT",
+  "eyeglass": {
+    "exports": "eyeglass-exports.js",
+    "needs": "^0.6.0",
+    "name": "microscope"
+  }
+}

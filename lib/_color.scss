@@ -1,0 +1,64 @@
+$color-black: black !default;
+$color-white: white !default;
+$color-gray: silver !default;
+$color-gray-darker: #47535B !default;
+
+$color-blue: blue !default;
+$color-green: green !default;
+$color-red: red !default;
+$color-orange: orange !default;
+$color-yellow: yellow !default;
+
+$color-primary: $color-blue !default;
+$color-secondary: $color-gray !default;
+
+$color-background: $color-white !default;
+$color-border: $color-gray !default;
+
+$color-danger: $color-red !default;
+$color-info: $color-blue!default;
+$color-success: $color-green!default;
+$color-warning: $color-orange!default;
+
+
+@mixin color-primary($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-primary#{$important};
+}
+
+@mixin color-secondary($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-secondary#{$important};
+}
+
+
+@mixin color-background($property: 'background-color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-background#{$important};
+}
+
+@mixin color-border($property: 'border-color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-border#{$important};
+}
+
+
+@mixin color-danger($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-danger#{$important};
+}
+
+@mixin color-info($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-info#{$important};
+}
+
+@mixin color-success($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-success#{$important};
+}
+
+@mixin color-warning($property: 'color', $force: false) {
+  $important: if($force, !important, null);
+  #{$property}: $color-warning#{$important};
+}

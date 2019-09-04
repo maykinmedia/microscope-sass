@@ -1,0 +1,433 @@
+@import 'color';
+@import 'grid';
+
+$typography-color-base: $color-black !default;
+$typography-color-text: $typography-color-base !default;
+$typography-color-link: $color-blue !default;
+$typography-color-link-hover: $typography-color-link !default;
+$typography-color-h: $typography-color-base !default;
+$typography-color-border: $color-border; // Not default, can't be configured, configure $color-border instead.
+
+$typography-default-hover-link: true !default;
+$typography-decoration-link: underline !default;
+
+$typography-font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$typography-font-family-text: $typography-font-family-base !default;
+$typography-font-family-h: $typography-font-family-base !default;
+
+
+$typography-font-size-text: 1rem !default;
+$typography-font-size-text-mobile: $typography-font-size-text !default;
+$typography-font-size-text-tablet: $typography-font-size-text !default;
+$typography-font-size-text-laptop: $typography-font-size-text !default;
+$typography-font-size-text-desktop: $typography-font-size-text !default;
+
+$typography-font-size-text-big: ($typography-font-size-text * 1.25) !default;
+$typography-font-size-text-big-mobile: $typography-font-size-text-big !default;
+$typography-font-size-text-big-tablet: $typography-font-size-text-big !default;
+$typography-font-size-text-big-laptop: $typography-font-size-text-big !default;
+$typography-font-size-text-big-desktop: $typography-font-size-text-big !default;
+
+$typography-font-size-text-small: ($typography-font-size-text * 0.75) !default;
+$typography-font-size-text-small-mobile: $typography-font-size-text-small !default;
+$typography-font-size-text-small-tablet: $typography-font-size-text-small !default;
+$typography-font-size-text-small-laptop: $typography-font-size-text-small !default;
+$typography-font-size-text-small-desktop: $typography-font-size-text-small !default;
+
+$typography-font-size-h1: ($typography-font-size-text * 2.5) !default;
+$typography-font-size-h1-mobile: $typography-font-size-h1 !default;
+$typography-font-size-h1-tablet: $typography-font-size-h1 !default;
+$typography-font-size-h1-laptop: $typography-font-size-h1 !default;
+$typography-font-size-h1-desktop: $typography-font-size-h1 !default;
+
+$typography-font-size-h2: ($typography-font-size-text * 2) !default;
+$typography-font-size-h2-mobile: $typography-font-size-h2 !default;
+$typography-font-size-h2-tablet: $typography-font-size-h2 !default;
+$typography-font-size-h2-laptop: $typography-font-size-h2 !default;
+$typography-font-size-h2-desktop: $typography-font-size-h2 !default;
+
+$typography-font-size-h3: ($typography-font-size-text * 1.75) !default;
+$typography-font-size-h3-mobile: $typography-font-size-h3 !default;
+$typography-font-size-h3-tablet: $typography-font-size-h3 !default;
+$typography-font-size-h3-laptop: $typography-font-size-h3 !default;
+$typography-font-size-h3-desktop: $typography-font-size-h3 !default;
+
+$typography-font-size-h4: ($typography-font-size-text * 1.5) !default;
+$typography-font-size-h4-mobile: $typography-font-size-h4 !default;
+$typography-font-size-h4-tablet: $typography-font-size-h4 !default;
+$typography-font-size-h4-laptop: $typography-font-size-h4 !default;
+$typography-font-size-h4-desktop: $typography-font-size-h4 !default;
+
+$typography-font-size-h5: ($typography-font-size-text * 1.25) !default;
+$typography-font-size-h5-mobile: $typography-font-size-h5 !default;
+$typography-font-size-h5-tablet: $typography-font-size-h5 !default;
+$typography-font-size-h5-laptop: $typography-font-size-h5 !default;
+$typography-font-size-h5-desktop: $typography-font-size-h5 !default;
+
+$typography-font-size-h6: $typography-font-size-text !default;
+$typography-font-size-h6-mobile: $typography-font-size-h6 !default;
+$typography-font-size-h6-tablet: $typography-font-size-h6 !default;
+$typography-font-size-h6-laptop: $typography-font-size-h6 !default;
+$typography-font-size-h6-desktop: $typography-font-size-h6 !default;
+
+$typography-font-weight-text: normal !default;
+$typography-font-weight-h: bold !default;
+
+$typography-font-weight-h1: $typography-font-weight-h !default;
+$typography-font-weight-h2: $typography-font-weight-h !default;
+$typography-font-weight-h3: $typography-font-weight-h !default;
+$typography-font-weight-h4: $typography-font-weight-h !default;
+$typography-font-weight-h5: $typography-font-weight-h !default;
+$typography-font-weight-h6: $typography-font-weight-h !default;
+
+
+$typography-line-height-base: 1.5 !default;
+
+$typography-line-height-text: $typography-line-height-base !default;
+$typography-line-height-text-mobile: $typography-line-height-text !default;
+$typography-line-height-text-tablet: $typography-line-height-text !default;
+$typography-line-height-text-laptop: $typography-line-height-text !default;
+$typography-line-height-text-desktop: $typography-line-height-text !default;
+
+$typography-line-height-text-big: $typography-line-height-base !default;
+$typography-line-height-text-big-mobile: $typography-line-height-text-mobile !default;
+$typography-line-height-text-big-tablet: $typography-line-height-text-mobile !default;
+$typography-line-height-text-big-laptop: $typography-line-height-text-mobile !default;
+$typography-line-height-text-big-desktop: $typography-line-height-text-mobile !default;
+
+$typography-line-height-text-small: $typography-line-height-base !default;
+$typography-line-height-text-small-mobile: $typography-line-height-text-mobile !default;
+$typography-line-height-text-small-tablet: $typography-line-height-text-mobile !default;
+$typography-line-height-text-small-laptop: $typography-line-height-text-mobile !default;
+$typography-line-height-text-small-desktop: $typography-line-height-text-mobile !default;
+
+$typography-line-height-h: 1.2 !default;
+
+$typography-line-height-h1: $typography-line-height-h !default;
+$typography-line-height-h1-mobile: $typography-line-height-h1 !default;
+$typography-line-height-h1-tablet: $typography-line-height-h1 !default;
+$typography-line-height-h1-laptop: $typography-line-height-h1 !default;
+$typography-line-height-h1-desktop: $typography-line-height-h1 !default;
+
+$typography-line-height-h2: $typography-line-height-h !default;
+$typography-line-height-h2-mobile: $typography-line-height-h2 !default;
+$typography-line-height-h2-tablet: $typography-line-height-h2 !default;
+$typography-line-height-h2-laptop: $typography-line-height-h2 !default;
+$typography-line-height-h2-desktop: $typography-line-height-h2 !default;
+
+$typography-line-height-h3: $typography-line-height-h !default;
+$typography-line-height-h3-mobile: $typography-line-height-h3 !default;
+$typography-line-height-h3-tablet: $typography-line-height-h3 !default;
+$typography-line-height-h3-laptop: $typography-line-height-h3 !default;
+$typography-line-height-h3-desktop: $typography-line-height-h3 !default;
+
+$typography-line-height-h4: $typography-line-height-h !default;
+$typography-line-height-h4-mobile: $typography-line-height-h4 !default;
+$typography-line-height-h4-tablet: $typography-line-height-h4 !default;
+$typography-line-height-h4-laptop: $typography-line-height-h4 !default;
+$typography-line-height-h4-desktop: $typography-line-height-h4 !default;
+
+$typography-line-height-h5: $typography-line-height-h !default;
+$typography-line-height-h5-mobile: $typography-line-height-h5 !default;
+$typography-line-height-h5-tablet: $typography-line-height-h5 !default;
+$typography-line-height-h5-laptop: $typography-line-height-h5 !default;
+$typography-line-height-h5-desktop: $typography-line-height-h5 !default;
+
+$typography-line-height-h6: $typography-line-height-h !default;
+$typography-line-height-h6-mobile: $typography-line-height-h6 !default;
+$typography-line-height-h6-tablet: $typography-line-height-h6 !default;
+$typography-line-height-h6-laptop: $typography-line-height-h6 !default;
+$typography-line-height-h6-desktop: $typography-line-height-h6 !default;
+
+
+$typography-margin-base: 1rem !default;
+
+$typography-margin-text: $typography-margin-base !default;
+$typography-margin-text-mobile: $typography-margin-text !default;
+$typography-margin-text-tablet: $typography-margin-text !default;
+$typography-margin-text-laptop: $typography-margin-text !default;
+$typography-margin-text-desktop: $typography-margin-text !default;
+
+$typography-margin-hr: $typography-margin-base !default;
+$typography-margin-hr-mobile: $typography-margin-hr !default;
+$typography-margin-hr-tablet: $typography-margin-hr !default;
+$typography-margin-hr-laptop: $typography-margin-hr !default;
+$typography-margin-hr-desktop: $typography-margin-hr !default;
+
+$typography-margin-list: $typography-margin-base !default;
+$typography-margin-list-mobile: $typography-margin-list !default;
+$typography-margin-list-tablet: $typography-margin-list !default;
+$typography-margin-list-laptop: $typography-margin-list !default;
+$typography-margin-list-desktop: $typography-margin-list !default;
+
+$typography-margin-table: $typography-margin-base 0 !default;
+$typography-margin-table-mobile: $typography-margin-table !default;
+$typography-margin-table-tablet: $typography-margin-table !default;
+$typography-margin-table-laptop: $typography-margin-table !default;
+$typography-margin-table-desktop: $typography-margin-table !default;
+
+$typography-margin-h: 0.5rem !default;
+
+$typography-margin-h1: $typography-margin-h !default;
+$typography-margin-h1-mobile: $typography-margin-h1 !default;
+$typography-margin-h1-tablet: $typography-margin-h1 !default;
+$typography-margin-h1-laptop: $typography-margin-h1 !default;
+$typography-margin-h1-desktop: $typography-margin-h1 !default;
+
+$typography-margin-h2: $typography-margin-h !default;
+$typography-margin-h2-mobile: $typography-margin-h2 !default;
+$typography-margin-h2-tablet: $typography-margin-h2 !default;
+$typography-margin-h2-laptop: $typography-margin-h2 !default;
+$typography-margin-h2-desktop: $typography-margin-h2 !default;
+
+$typography-margin-h3: $typography-margin-h !default;
+$typography-margin-h3-mobile: $typography-margin-h3 !default;
+$typography-margin-h3-tablet: $typography-margin-h3 !default;
+$typography-margin-h3-laptop: $typography-margin-h3 !default;
+$typography-margin-h3-desktop: $typography-margin-h3 !default;
+
+$typography-margin-h4: $typography-margin-h !default;
+$typography-margin-h4-mobile: $typography-margin-h4 !default;
+$typography-margin-h4-tablet: $typography-margin-h4 !default;
+$typography-margin-h4-laptop: $typography-margin-h4 !default;
+$typography-margin-h4-desktop: $typography-margin-h4 !default;
+
+$typography-margin-h5: $typography-margin-h !default;
+$typography-margin-h5-mobile: $typography-margin-h5 !default;
+$typography-margin-h5-tablet: $typography-margin-h5 !default;
+$typography-margin-h5-laptop: $typography-margin-h5 !default;
+$typography-margin-h5-desktop: $typography-margin-h5 !default;
+
+$typography-margin-h6: $typography-margin-h !default;
+$typography-margin-h6-mobile: $typography-margin-h6 !default;
+$typography-margin-h6-tablet: $typography-margin-h6 !default;
+$typography-margin-h6-laptop: $typography-margin-h6 !default;
+$typography-margin-h6-desktop: $typography-margin-h6 !default;
+
+
+$typography-margin-property-base: margin-bottom !default;
+$typography-margin-property-text: $typography-margin-property-base !default;
+$typography-margin-property-h: $typography-margin-property-base !default;
+$typography-margin-property-hr: $typography-margin-property-base !default;
+$typography-margin-property-list: $typography-margin-property-base !default;
+$typography-margin-property-table: margin !default;
+
+$typography-margin-property-h1: $typography-margin-property-h !default;
+$typography-margin-property-h2: $typography-margin-property-h !default;
+$typography-margin-property-h3: $typography-margin-property-h !default;
+$typography-margin-property-h4: $typography-margin-property-h !default;
+$typography-margin-property-h5: $typography-margin-property-h !default;
+$typography-margin-property-h6: $typography-margin-property-h !default;
+
+$typography-padding-table: $grid-margin-1 0 !default;
+
+$typography-size-border: 1px !default;
+$typography-style-border: solid !default;
+
+
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin wysiwyg($margin: true, $not-me: null) {
+  @if $not-me {
+    $not-me: ':not(#{$not-me})';
+  }
+
+  h1#{$not-me} {
+    @include h1($margin);
+  }
+  h2#{$not-me} {
+    @include h2($margin);
+  }
+  h3#{$not-me} {
+    @include h3($margin);
+  }
+  h4#{$not-me} {
+    @include h4($margin);
+  }
+  h5#{$not-me} {
+    @include h5($margin);
+  }
+  h6#{$not-me} {
+    @include h6($margin);
+  }
+  p#{$not-me} {
+    @include body($margin);
+  }
+  a#{$not-me} {
+    @include anchor;
+  }
+  ul#{$not-me}, ol#{$not-me} {
+    @include list($margin);
+  }
+  hr#{$not-me} {
+    @include hr($margin);
+  }
+  table#{$not-me} {
+    @include table($margin);
+  }
+}
+
+@mixin mono {
+  font-family: monospace;
+}
+
+@mixin h1($margin: false, $margin-property: $typography-margin-property-h1) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h1-mobile, $typography-margin-h1-tablet, $typography-margin-h1-laptop, $typography-margin-h1-desktop);
+  @include responsive(font-size, $typography-font-size-h1-mobile, $typography-font-size-h1-tablet, $typography-font-size-h1-laptop, $typography-font-size-h1-desktop);
+  @include responsive(line-height, $typography-line-height-h1-mobile, $typography-line-height-h1-tablet, $typography-line-height-h1-laptop, $typography-line-height-h1-desktop);
+  font-weight: $typography-font-weight-h1;
+}
+
+@mixin h2($margin: false, $margin-property: $typography-margin-property-h2) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h2-mobile, $typography-margin-h2-tablet, $typography-margin-h2-laptop, $typography-margin-h2-desktop);
+  @include responsive(font-size, $typography-font-size-h2-mobile, $typography-font-size-h2-tablet, $typography-font-size-h2-laptop, $typography-font-size-h2-desktop);
+  @include responsive(line-height, $typography-line-height-h2-mobile, $typography-line-height-h2-tablet, $typography-line-height-h2-laptop, $typography-line-height-h2-desktop);
+  font-weight: $typography-font-weight-h2;
+}
+
+@mixin h3($margin: false, $margin-property: $typography-margin-property-h3) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h3-mobile, $typography-margin-h3-tablet, $typography-margin-h3-laptop, $typography-margin-h3-desktop);
+  @include responsive(font-size, $typography-font-size-h3-mobile, $typography-font-size-h3-tablet, $typography-font-size-h3-laptop, $typography-font-size-h3-desktop);
+  @include responsive(line-height, $typography-line-height-h3-mobile, $typography-line-height-h3-tablet, $typography-line-height-h3-laptop, $typography-line-height-h3-desktop);
+  font-weight: $typography-font-weight-h3;
+}
+
+@mixin h4($margin: false, $margin-property: $typography-margin-property-h4) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h4-mobile, $typography-margin-h4-tablet, $typography-margin-h4-laptop, $typography-margin-h4-desktop);
+  @include responsive(font-size, $typography-font-size-h4-mobile, $typography-font-size-h4-tablet, $typography-font-size-h4-laptop, $typography-font-size-h4-desktop);
+  @include responsive(line-height, $typography-line-height-h4-mobile, $typography-line-height-h4-tablet, $typography-line-height-h4-laptop, $typography-line-height-h4-desktop);
+  font-weight: $typography-font-weight-h4;
+}
+
+@mixin h5($margin: false, $margin-property: $typography-margin-property-h5) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h5-mobile, $typography-margin-h5-tablet, $typography-margin-h5-laptop, $typography-margin-h5-desktop);
+  @include responsive(font-size, $typography-font-size-h5-mobile, $typography-font-size-h5-tablet, $typography-font-size-h5-laptop, $typography-font-size-h5-desktop);
+  @include responsive(line-height, $typography-line-height-h5-mobile, $typography-line-height-h5-tablet, $typography-line-height-h5-laptop, $typography-line-height-h5-desktop);
+  font-weight: $typography-font-weight-h5;
+}
+
+@mixin h6($margin: false, $margin-property: $typography-margin-property-h6) {
+  @include h;
+  @include margin($margin, $margin-property, $typography-margin-h6-mobile, $typography-margin-h6-tablet, $typography-margin-h6-laptop, $typography-margin-h6-desktop);
+  @include responsive(font-size, $typography-font-size-h6-mobile, $typography-font-size-h6-tablet, $typography-font-size-h6-laptop, $typography-font-size-h6-desktop);
+  @include responsive(line-height, $typography-line-height-h6-mobile, $typography-line-height-h6-tablet, $typography-line-height-h6-laptop, $typography-line-height-h6-desktop);
+  font-weight: $typography-font-weight-h6;
+}
+
+@mixin body($margin: false, $margin-property: $typography-margin-property-text) {
+  @include text;
+  @include margin($margin, $margin-property, $typography-margin-text-mobile, $typography-margin-text-tablet, $typography-margin-text-laptop, $typography-margin-text-desktop);
+  @include responsive(font-size, $typography-font-size-text-mobile, $typography-font-size-text-tablet, $typography-font-size-text-laptop, $typography-font-size-text-desktop);
+  font-weight: $typography-font-weight-text;
+  line-height: $typography-line-height-text;
+}
+
+@mixin body--big {
+  @include responsive(font-size, $typography-font-size-text-big-mobile, $typography-font-size-text-big-tablet, $typography-font-size-text-big-laptop, $typography-font-size-text-big-desktop);
+  @include responsive(line-height, $typography-line-height-text-big-mobile, $typography-line-height-text-big-tablet, $typography-line-height-text-big-laptop, $typography-line-height-text-big-desktop);
+}
+
+@mixin body--small {
+  @include responsive(font-size, $typography-font-size-text-small-mobile, $typography-font-size-text-small-tablet, $typography-font-size-text-small-laptop, $typography-font-size-text-small-desktop);
+  @include responsive(line-height, $typography-line-height-text-small-mobile, $typography-line-height-text-small-tablet, $typography-line-height-text-small-laptop, $typography-line-height-text-small-desktop);
+}
+
+@mixin anchor($hover-to-decorate: $typography-default-hover-link) {
+  color: $typography-color-link;
+  cursor: pointer;
+
+  @if $hover-to-decorate == true {
+    text-decoration: none;
+
+    &:hover {
+      color: $typography-color-link-hover;
+      text-decoration: $typography-decoration-link;
+    }
+  } @else if $hover-to-decorate == false {
+    text-decoration: $typography-decoration-link;
+
+    &:hover {
+      color: $typography-color-link-hover;
+      text-decoration: none !important;
+    }
+  }
+}
+
+@mixin anchor-inherit {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
+@mixin list($margin: false, $margin-property: $typography-margin-property-list) {
+  @include body(false);
+  @include margin($margin, $margin-property, $typography-margin-list);
+}
+
+@mixin hr($margin: false, $margin-property: $typography-margin-property-hr) {
+  @include border(top);
+  margin: 0;
+  @include margin($margin, $margin-property, $typography-margin-hr);
+}
+
+@mixin table($margin: false, $margin-property: $typography-margin-property-table) {
+  @include body(false);
+  @include margin($margin, $margin-property, $typography-margin-table);
+  border-collapse: collapse;
+  text-align: left;
+
+  tr {
+    @include border(top);
+
+    &:last-child {
+      @include border(bottom);
+    }
+  }
+
+  th, td {
+    padding: $typography-padding-table;
+  }
+}
+
+@mixin border($position: bottom, $color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
+  box-sizing: border-box;
+
+  @if $position == all {
+    border: $size $style $color;
+  } @else {
+    border-#{$position}: $size $style $color;
+  }
+}
+
+@mixin margin($margin: auto, $property: $typography-margin-property-text, $value-mobile: $typography-margin-text, $value-tablet: null, $value-laptop: null, $value-desktop: null) {
+  @if $margin == auto {
+    &:not(:last-child) {
+      @include responsive($property, $value-mobile, $value-tablet, $value-laptop, $value-desktop);
+    }
+  } @else if $margin == true {
+    @include responsive($property, $value-mobile, $value-tablet, $value-laptop, $value-desktop);
+  } @else if $margin != false {
+    #{$property}: $margin;
+  }
+}
+
+@mixin h {
+  color: $typography-color-h;
+  font-family: $typography-font-family-h;
+  margin: 0;
+}
+
+@mixin text {
+  color: $typography-color-text;
+  font-family: $typography-font-family-text;
+  margin: 0;
+}

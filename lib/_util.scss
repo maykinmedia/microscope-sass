@@ -1,0 +1,44 @@
+@import 'color';
+@import 'typography';
+
+$util-shadow-default-color: rgba($color-black, 0.15) !default;
+$util-shadow-default-offset-x: 0 !default;
+$util-shadow-default-offset-y: 0.5rem !default;
+$util-shadow-default-blur: 1rem !default;
+$util-shadow-default-spread: 0 !default;
+
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+@mixin aspect-ratio($width, $height, $property: padding-top, $clear-height: auto) {
+  #{$property}: percentage($height / $width);
+
+  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
+    height: 0;
+  }
+}
+
+@mixin shadow($color: $util-shadow-default-color, $offset-x: $util-shadow-default-offset-x, $offset-y: $util-shadow-default-offset-y, $blur: $util-shadow-default-blur, $spread: $util-shadow-default-spread) {
+  box-shadow: $offset-x $offset-y $blur $spread $color;
+}
+
+@mixin inspect {
+  @at-root {
+    * {
+      @include outline;
+    }
+  }
+}
+
+@mixin outline($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
+    outline: $size $style $color;
+}

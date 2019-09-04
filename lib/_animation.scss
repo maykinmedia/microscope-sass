@@ -1,0 +1,46 @@
+$animation-default-duration-fast: 0.3s !default;
+$animation-default-duration-medium: 1s !default;
+$animation-default-duration-slow: 5s !default;
+$animation-default-delay: 0s !default;
+$animation-default-function: ease-in-out !default;
+
+@mixin animate($properties: all, $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
+  transition: $properties $duration $function $delay;
+}
+
+@mixin fade-in($name, $property: opacity, $value-start: 0, $value-end: 1, $duration: $animation-default-duration-medium, $delay: $animation-default-delay, $function: $animation-default-function) {
+  @include _keyframes($name, $property, $value-start, $value-end, $duration, $delay, $function);
+}
+
+@mixin ken-burns($name, $origin: center, $count: infinite, $value-start: 1, $value-end: 1.1, $duration: $animation-default-duration-slow, $delay: $animation-default-delay, $function: $animation-default-function) {
+    $duration: $duration * 2;  // Duration for each direction.
+    @include _keyframes($name, transform, scale($value-start), scale($value-end), $duration, $delay, $function);
+    animation-direction: alternate;
+    animation-iteration-count: $count;
+    transform-origin: $origin;
+}
+
+@mixin _keyframes($name, $property: opacity, $value-start: 0, $value-end: 1, $duration: $animation-default-duration-medium, $delay: $animation-default-delay, $function: $animation-default-function) {
+  $name: unquote($name);
+  animation: $name $duration $function $delay;
+
+  @keyframes #{$name} {
+    0% {
+      #{$property}: $value-start;
+    }
+    100% {
+      #{$property}: $value-end;
+    }
+  }
+}
+
+@mixin hover-fade($property: opacity, $value-start: 1, $value-end: 0.7, $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
+  @include animate($property, $duration, $delay, $function);
+  #{$property}: $value-start;
+
+  &:focus,
+  &:hover {
+    #{$property}: $value-end;
+  }
+}
+

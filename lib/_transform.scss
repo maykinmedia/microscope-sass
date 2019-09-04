@@ -1,0 +1,104 @@
+@mixin overlay {
+  @include absolute(0px, 0px);
+  width: 100%;
+  height: 100%;
+}
+
+@mixin rounded {
+  border-radius: 100%;
+}
+
+@mixin center-h($width: null, $height: null) {
+  @include absolute(null, 50%);
+  @include translate(-50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+@mixin center-v($width: null, $height: null) {
+  @include absolute(50%);
+  @include translate(null, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+@mixin center-hv($width: null, $height: null) {
+  @include absolute(50%, 50%);
+  @include translate(-50%, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+@mixin absolute($top: null, $left: null) {
+  position: absolute;
+
+  @if $top {
+    top: $top;
+  }
+
+  @if $left {
+    left: $left;
+  }
+}
+
+
+@function tr_rotate($deg) {
+  @return rotate(#{$deg}deg);
+}
+
+
+@mixin rotate($deg, $origin: center) {
+  transform: tr_rotate($deg);
+
+  @if $origin {
+    transform-origin: $origin;
+  }
+}
+
+
+@function tr_scale($sx, $sy: null) {
+  @if $sx and $sy {
+    @return scale(#{$sx}, #{$sy});
+  } @else {
+    @return scale(#{$sx});
+  }
+}
+
+
+@mixin scale($sx, $sy: null) {
+  transform: tr_scale($sx, $sy);
+}
+
+
+@function tr_translate($x: null, $y: null) {
+  @if $x and $y {
+    @return translate(#{$x}, #{$y});
+  } @else if $x {
+    @return translateX(#{$x});
+  } @else if $y {
+    @return translateY(#{$y});
+  }
+}
+
+
+@mixin translate($x: null, $y: null) {
+  transform: tr_translate($x, $y);
+}

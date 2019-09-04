@@ -1,0 +1,316 @@
+@import 'responsive';
+
+$grid-columns-mobile: 4 !default;
+$grid-columns-tablet: 9 !default;
+$grid-columns-laptop: 12 !default;
+$grid-columns-desktop: 12 !default;
+
+$grid-gutter-base: 30px !default;
+$grid-gutter-mobile: $grid-gutter-base !default;
+$grid-gutter-tablet: $grid-gutter-base !default;
+$grid-gutter-laptop: $grid-gutter-base !default;
+$grid-gutter-desktop: $grid-gutter-base !default;
+$grid-row-height: 40px !default;
+
+$grid-container-margin-base: $grid-gutter-base / 2 !default;
+$grid-container-padding-base: 0px !default;
+
+$grid-container-margin: $grid-container-margin-base !default;
+$grid-container-margin-small: $grid-container-margin-base !default;
+$grid-container-margin-big: $grid-container-margin-base !default;
+
+$grid-container-padding: $grid-container-padding-base !default;
+$grid-container-padding-small: $grid-container-padding-base !default$grid-container-padding-big: $grid-container-padding-base !default$grid-container-size: $breakpoint-desktop - 2 * $grid-container-margin !default;
+$grid-container-size-small: 800px !default;
+$grid-container-size-big: 1400px !default;
+
+$grid-margin-0: 5px !default;
+$grid-margin-1: 10px !default;
+$grid-margin-2: 20px !default;
+$grid-margin-3: 30px !default;
+$grid-margin-4: 40px !default;
+$grid-margin-5: 50px !default;
+$grid-margin-6: 60px !default;
+$grid-margin-7: 70px !default;
+$grid-margin-8: 80px !default;
+$grid-margin-9: 90px !default;
+$grid-margin-10: 100px !default;
+
+@mixin container($clearfix: true, $padding: true) {
+  $max-width-mobile: calc(100% - #{2 * $grid-container-margin});
+  @include responsive(max-width, $max-width-mobile, $max-width-mobile, $max-width-mobile, $grid-container-size);
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @if $padding == true {
+    @include container-padding;
+  }
+
+  @if $clearfix == true {
+    @include clearfix;
+  } @else if $clearfix == flex {
+    display: flex;
+  }
+}
+
+@mixin container--big($padding: true) {
+  width: calc(100% - #{2 * $grid-container-margin-big});
+  max-width: $grid-container-size-big;
+
+  @if $padding == true {
+    @include container-padding(big);
+  }
+
+  @include desktop { // Override 'normal' container
+    max-width: $grid-container-size-big;
+  }
+}
+
+@mixin container--small() {
+  @include container-padding(small);
+  width: calc(100% - #{2 * $grid-container-margin-small});
+
+  max-width: $grid-container-size-small;
+  @include desktop { // Override 'normal' container
+    max-width: $grid-container-size-small;
+  }
+}
+
+@mixin container-margin($size: normal, $properties: ('margin-left', 'margin-right')) {
+  @if type-of($properties) != list {
+    $properties: ($properties);
+  }
+
+  @if $size == big {
+    @if $grid-container-margin != $grid-container-margin-big {
+      @each $property in $properties {
+        #{$property}: $grid-container-margin-big;
+      }
+    }
+  } @else if $size == small {
+    @if $grid-container-margin != $grid-container-margin-small {
+      @each $property in $properties {
+        #{$property}: $grid-container-margin-small;
+      }
+    }
+  } @else if $size == normal {
+    @if $grid-container-margin > 0 {
+      @each $property in $properties {
+        #{$property}: $grid-container-margin;
+      }
+    }
+  }
+}
+
+@mixin container-padding($size: normal, $properties: ('padding-left', 'padding-right')) {
+  @if type-of($properties) != list {
+    $properties: ($properties);
+  }
+
+  box-sizing: border-box;
+
+  @if $size == big {
+    @if $grid-container-padding != $grid-container-padding-big {
+      @each $property in $properties {
+        #{$property}: $grid-container-padding-big;
+      }
+    }
+  } @else if $size == small {
+    @if $grid-container-padding != $grid-container-padding-small {
+      @each $property in $properties {
+        #{$property}: $grid-container-padding-small;
+      }
+    }
+  } @else if $size == normal {
+    @if $grid-container-padding > 0 {
+      @each $property in $properties {
+        #{$property}: $grid-container-padding;
+      }
+    }
+  }
+}
+
+@mixin breakout-margin($size: normal, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
+  @if $size == big {
+    @include breakout($grid-container-margin-big);
+  } @else if $size == small {
+    @include breakout($grid-container-margin-small);
+  } @else if $size == normal {
+    @include breakout($grid-container-margin);
+  }
+}
+
+@mixin breakout-padding($size: normal, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
+  @if $size == big {
+    @include breakout($grid-container-padding-big);
+  } @else if $size == small {
+    @include breakout($grid-container-padding-small);
+  } @else if $size == normal {
+    @include breakout($grid-container-padding);
+  }
+}
+
+@mixin breakout($amount, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
+  #{$offset-property}: -$amount;
+  #{$size-property}: calc(#{$size-base} + #{2 * $amount});
+}
+
+@mixin clearfix {
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+@mixin columns-responsive($span-mobile, $span-tablet, $span-laptop: $span-tablet, $span-desktop: $span-laptop, $correction-mobile: 0px, $correction-tablet: $correction-mobile, $correction-laptop: $correction-tablet, $correction-desktop: $correction-laptop, $property: width) {
+  $width-mobile: _columns($span-mobile, $grid-columns-mobile, $grid-gutter-mobile, $correction-mobile);
+  $width-tablet: _columns($span-tablet, $grid-columns-tablet, $grid-gutter-tablet, $correction-tablet);
+  $width-laptop: _columns($span-laptop, $grid-columns-laptop, $grid-gutter-laptop, $correction-laptop);
+  $width-desktop: _columns($span-desktop, $grid-columns-desktop, $grid-gutter-desktop, $correction-desktop);
+  @include responsive($property, $width-mobile, $width-tablet, $width-laptop, $width-desktop);
+
+  @include mobile-only {
+    @include _columns-layout($grid-gutter-mobile)
+  }
+
+  @include tablet(true) {
+    @include _columns-layout($grid-gutter-tablet)
+  }
+
+  @include laptop(true) {
+    @include _columns-layout($grid-gutter-laptop)
+  }
+
+  @include desktop {
+    @include _columns-layout($grid-gutter-desktop)
+  }
+}
+
+@mixin columns-mobile($span, $correction: 0px, $gutter: $grid-gutter-mobile) {
+  @include mobile-only {
+    @include _columns($span, $grid-columns-mobile, $gutter, auto, width, $correction);
+  }
+}
+
+@mixin columns-tablet($span, $correction: 0px, $gutter: $grid-gutter-tablet) {
+  @include tablet(true) {
+    @include _columns($span, $grid-columns-tablet, $gutter, auto, width, $correction);
+  }
+}
+
+@mixin columns-laptop($span, $correction: 0px, $gutter: $grid-gutter-laptop) {
+  @include laptop(true) {
+    @include _columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
+  }
+}
+
+@mixin columns-desktop($span, $correction: 0px, $gutter: $grid-gutter-desktop) {
+  @include desktop() {
+    @include _columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
+  }
+}
+
+@mixin rows($span, $property: height, $force: false) {
+  @if $force == true {
+    #{$property}: $span * $grid-row-height !important;
+  } @else {
+    #{$property}: $span * $grid-row-height;
+  }
+}
+
+@mixin omega($force: false, $property: margin-right) {
+  @if $force == true {
+    #{$property}: 0 !important;
+  } @else {
+    #{$property}: 0;
+  }
+}
+
+@mixin omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop, $force: false, $property: margin-right) {
+  @include mobile-only {
+    @include omega-smart-mobile($span-mobile, $force, $property)
+  }
+  @include tablet(true) {
+    @include omega-smart-tablet($span-tablet, $force, $property)
+  }
+  @include laptop(true) {
+    @include omega-smart-laptop($span-laptop, $force, $property)
+  }
+  @include desktop {
+    @include omega-smart-desktop($span-desktop, $force, $property)
+  }
+}
+
+@mixin omega-smart-mobile($span, $force: false, $property: margin-right) {
+  @include _omega-smart($span, $grid-columns-mobile, $force, $property);
+}
+
+@mixin omega-smart-tablet($span, $force: false, $property: margin-right) {
+  @include _omega-smart($span, $grid-columns-tablet, $force, $property);
+}
+
+@mixin omega-smart-laptop($span, $force: false, $property: margin-right) {
+  @include _omega-smart($span, $grid-columns-laptop, $force, $property);
+}
+
+@mixin omega-smart-desktop($span, $force: false, $property: margin-right) {
+  @include _omega-smart($span, $grid-columns-desktop, $force, $property);
+}
+
+@mixin gutter($property: margin-right, $multiplier: 1) {
+  @include responsive($property, $grid-gutter-mobile * $multiplier, $grid-gutter-tablet * $multiplier, $grid-gutter-laptop * $multiplier, $grid-gutter-desktop * $multiplier);
+}
+
+// Private API
+
+
+@function _columns($span, $total, $gutter, $correction: 0px) {
+  @if $span == $total {
+    @return 100%;
+  }
+
+  $gutters: $span - 1;
+  $total_gutters: $total - 1;
+  $total_gutter_width: $total_gutters * $gutter;
+  @return calc((100% - #{$total_gutter_width}) / #{$total / $span} + #{$gutters * $gutter + $correction});
+}
+
+@mixin _columns($span, $total, $gutter, $omega: auto, $property: width, $correction: 0px) {
+  @include _columns-layout($gutter, $omega);
+  $gutters: $span - 1;
+  $total_gutters: $total - 1;
+  $total_gutter_width: $total_gutters * $gutter;
+  #{$property}: _columns($span, $total, $gutter, $correction);
+}
+
+@mixin _columns-layout($gutter, $omega: auto) {
+  box-sizing: border-box;
+  float: left;
+
+  @if $omega == true {
+    @include omega;
+  } @else if $omega == false {
+    margin-right: $gutter;
+  } @else if $omega == auto {
+    margin-right: $gutter;
+
+    &:last-child {
+      @include omega;
+    }
+  }
+}
+
+@mixin _omega-smart($span, $total, $force: false, $property: margin-right) {
+  @if $span == $total {
+    @include omega($force, $property)
+  } @else {
+    $columns: $total / $span;
+
+    &:nth-child(#{$columns}n) {
+      @include omega($force, $property);
+    }
+  }
+}

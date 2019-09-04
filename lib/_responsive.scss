@@ -1,0 +1,149 @@
+$breakpoint-mobile-s: 320px !default;
+$breakpoint-mobile-m: 375px !default;
+$breakpoint-mobile-l: 425px !default;
+
+$breakpoint-tablet: 768px !default;
+
+$breakpoint-laptop: 992px !default;
+$breakpoint-desktop: 1200px !default;
+
+@mixin responsive($property, $value-mobile, $value-tablet, $value-laptop: null, $value-desktop: null) {
+  #{$property}: $value-mobile;
+
+  @if $value-tablet and $value-tablet != $value-mobile {
+    @include tablet {
+      #{$property}: $value-tablet;
+    }
+  }
+
+  @if $value-laptop and $value-laptop != $value-tablet {
+    @include laptop {
+      #{$property}: $value-laptop;
+    }
+  }
+
+  @if $value-desktop and $value-desktop != $value-laptop {
+    @include desktop {
+      #{$property}: $value-desktop;
+    }
+  }
+}
+
+@mixin mobile-only {
+  @media (max-width: $breakpoint-tablet - 1px) {
+    @content;
+  }
+}
+
+@mixin tablet($only: false) {
+  @if $only == false {
+    @media (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-laptop - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin laptop($only: false) {
+  @if $only == false {
+    @media (min-width: $breakpoint-laptop) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint-laptop) and (max-width: $breakpoint-desktop - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin desktop() {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin breakpoint($min: null, $max: null) {
+  @if $min and not $max {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+
+  @if not $min and $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  }
+
+  @if $min and $max {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}
+
+@mixin show-on-mobile($display: block) {
+  display: none;
+  @include mobile-only {
+    display: $display;
+  }
+}
+
+@mixin show-on-tablet($display: block, $only: false) {
+  display: none;
+  
+  @include tablet($only) {
+    display: $display;
+  }
+}
+
+@mixin show-on-laptop($display: block, $only: false) {
+  display: none;
+  
+  @include laptop($only) {
+    display: $display;
+  }
+}
+
+@mixin show-on-desktop($display: block) {
+  display: none;
+  
+  @include desktop($only) {
+    display: $display;
+  }
+}
+
+
+@mixin hide-on-mobile($display: block) {
+  display: $display;
+  @include mobile-only {
+    display: none;
+  }
+}
+
+@mixin hide-on-tablet($display: block, $only: false) {
+  display: $display;
+  
+  @include tablet($only) {
+    display: none;
+  }
+}
+
+@mixin hide-on-laptop($display: block, $only: false) {
+  display: $display;
+  
+  @include laptop($only) {
+    display: none;
+  }
+}
+
+@mixin hide-on-desktop($display: block) {
+  display: $display;
+  
+  @include desktop($only) {
+    display: none;
+  }
+}
