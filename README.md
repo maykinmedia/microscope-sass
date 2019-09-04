@@ -30,7 +30,7 @@ npm i microscope-sass --save
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/maykinmedia/bem.js/issues).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/maykinmedia/microscope-sass/issues).
 
 ## Author
 
