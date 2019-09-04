@@ -11,14 +11,23 @@
     "sass",
     "scoped"
   ],
-  "author": {
-    "name": "Maykin Media",
-    "url": "https://www.maykinmedia.nl"
-  },
+  "author": "Maykin Media (https://www.maykinmedia.nl)",
   "license": "MIT",
   "eyeglass": {
     "exports": "eyeglass-exports.js",
     "needs": "^0.6.0",
     "name": "microscope"
-  }
+  },
+  "main": "eyeglass-exports.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maykinmedia/microscope-sass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maykinmedia/microscope-sass/issues"
+  },
+  "homepage": "https://github.com/maykinmedia/microscope-sass#readme"
 }
