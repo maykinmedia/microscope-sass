@@ -15,7 +15,7 @@
   "license": "MIT",
   "eyeglass": {
     "exports": "eyeglass-exports.js",
-    "needs": "^0.6.0",
+    "needs": "*",
     "name": "microscope"
   },
   "main": "eyeglass-exports.js",
