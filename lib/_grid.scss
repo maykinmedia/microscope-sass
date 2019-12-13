@@ -213,11 +213,26 @@ $grid-margin-10: 100px !default;
   }
 }
 
-@mixin rows($span, $property: height, $force: false) {
+
+/// Applies rows height by setting each value in $properties to $span * $grid-row-height.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Amount of rows.
+/// @param {list | string} $properties - One or more properties to set.
+/// @param {boolean} $force - Whether to use !important.
+@mixin rows($span, $properties: height, $force: false) {
+  @if type-of($properties) != list {
+    $properties: ($properties);
+  }
+
   @if $force == true {
-    #{$property}: $span * $grid-row-height !important;
+    @each $property in $properties {
+      #{$property}: $span * $grid-row-height !important;
+    }
   } @else {
-    #{$property}: $span * $grid-row-height;
+    @each $property in $properties {
+      #{$property}: $span * $grid-row-height;
+    }
   }
 }
 
