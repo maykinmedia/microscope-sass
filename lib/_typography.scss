@@ -140,6 +140,65 @@ $typography-line-height-h6-laptop: $typography-line-height-h6 !default;
 $typography-line-height-h6-desktop: $typography-line-height-h6 !default;
 
 
+$typography-letter-spacing-base: normal;
+
+$typography-letter-spacing-text: $typography-letter-spacing-base !default;
+$typography-letter-spacing-text-mobile: $typography-letter-spacing-text !default;
+$typography-letter-spacing-text-tablet: $typography-letter-spacing-text !default;
+$typography-letter-spacing-text-laptop: $typography-letter-spacing-text !default;
+$typography-letter-spacing-text-desktop: $typography-letter-spacing-text !default;
+
+$typography-letter-spacing-text-big: $typography-letter-spacing-base !default;
+$typography-letter-spacing-text-big-mobile: $typography-letter-spacing-text-big !default;
+$typography-letter-spacing-text-big-tablet: $typography-letter-spacing-text-big !default;
+$typography-letter-spacing-text-big-laptop: $typography-letter-spacing-text-big !default;
+$typography-letter-spacing-text-big-desktop: $typography-letter-spacing-text-big !default;
+
+$typography-letter-spacing-text-small: $typography-letter-spacing-base !default;
+$typography-letter-spacing-text-small-mobile: $typography-letter-spacing-text-small !default;
+$typography-letter-spacing-text-small-tablet: $typography-letter-spacing-text-small !default;
+$typography-letter-spacing-text-small-laptop: $typography-letter-spacing-text-small !default;
+$typography-letter-spacing-text-small-desktop: $typography-letter-spacing-text-small !default;
+
+$typography-letter-spacing-h: normal;
+
+$typography-letter-spacing-h1: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h1-mobile: $typography-letter-spacing-h1 !default;
+$typography-letter-spacing-h1-tablet: $typography-letter-spacing-h1 !default;
+$typography-letter-spacing-h1-laptop: $typography-letter-spacing-h1 !default;
+$typography-letter-spacing-h1-desktop: $typography-letter-spacing-h1 !default;
+
+$typography-letter-spacing-h2: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h2-mobile: $typography-letter-spacing-h2 !default;
+$typography-letter-spacing-h2-tablet: $typography-letter-spacing-h2 !default;
+$typography-letter-spacing-h2-laptop: $typography-letter-spacing-h2 !default;
+$typography-letter-spacing-h2-desktop: $typography-letter-spacing-h2 !default;
+
+$typography-letter-spacing-h3: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h3-mobile: $typography-letter-spacing-h3 !default;
+$typography-letter-spacing-h3-tablet: $typography-letter-spacing-h3 !default;
+$typography-letter-spacing-h3-laptop: $typography-letter-spacing-h3 !default;
+$typography-letter-spacing-h3-desktop: $typography-letter-spacing-h3 !default;
+
+$typography-letter-spacing-h4: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h4-mobile: $typography-letter-spacing-h4 !default;
+$typography-letter-spacing-h4-tablet: $typography-letter-spacing-h4 !default;
+$typography-letter-spacing-h4-laptop: $typography-letter-spacing-h4 !default;
+$typography-letter-spacing-h4-desktop: $typography-letter-spacing-h4 !default;
+
+$typography-letter-spacing-h5: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h5-mobile: $typography-letter-spacing-h5 !default;
+$typography-letter-spacing-h5-tablet: $typography-letter-spacing-h5 !default;
+$typography-letter-spacing-h5-laptop: $typography-letter-spacing-h5 !default;
+$typography-letter-spacing-h5-desktop: $typography-letter-spacing-h5 !default;
+
+$typography-letter-spacing-h6: $typography-letter-spacing-h !default;
+$typography-letter-spacing-h6-mobile: $typography-letter-spacing-h6 !default;
+$typography-letter-spacing-h6-tablet: $typography-letter-spacing-h6 !default;
+$typography-letter-spacing-h6-laptop: $typography-letter-spacing-h6 !default;
+$typography-letter-spacing-h6-desktop: $typography-letter-spacing-h6 !default;
+
+
 $typography-margin-base: 1rem !default;
 
 $typography-margin-text: $typography-margin-base !default;
@@ -275,70 +334,120 @@ $typography-style-border: solid !default;
   font-family: monospace;
 }
 
+/// Applies h1 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h1] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h1($margin: false, $margin-property: $typography-margin-property-h1) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h1-mobile, $typography-margin-h1-tablet, $typography-margin-h1-laptop, $typography-margin-h1-desktop);
   @include responsive(font-size, $typography-font-size-h1-mobile, $typography-font-size-h1-tablet, $typography-font-size-h1-laptop, $typography-font-size-h1-desktop);
   @include responsive(line-height, $typography-line-height-h1-mobile, $typography-line-height-h1-tablet, $typography-line-height-h1-laptop, $typography-line-height-h1-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h1-mobile, $typography-letter-spacing-h1-tablet, $typography-letter-spacing-h1-laptop, $typography-letter-spacing-h1-desktop);
   font-weight: $typography-font-weight-h1;
 }
 
+/// Applies h2 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h2] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h2($margin: false, $margin-property: $typography-margin-property-h2) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h2-mobile, $typography-margin-h2-tablet, $typography-margin-h2-laptop, $typography-margin-h2-desktop);
   @include responsive(font-size, $typography-font-size-h2-mobile, $typography-font-size-h2-tablet, $typography-font-size-h2-laptop, $typography-font-size-h2-desktop);
   @include responsive(line-height, $typography-line-height-h2-mobile, $typography-line-height-h2-tablet, $typography-line-height-h2-laptop, $typography-line-height-h2-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h2-mobile, $typography-letter-spacing-h2-tablet, $typography-letter-spacing-h2-laptop, $typography-letter-spacing-h2-desktop);
   font-weight: $typography-font-weight-h2;
 }
 
+/// Applies h3 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h3] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h3($margin: false, $margin-property: $typography-margin-property-h3) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h3-mobile, $typography-margin-h3-tablet, $typography-margin-h3-laptop, $typography-margin-h3-desktop);
   @include responsive(font-size, $typography-font-size-h3-mobile, $typography-font-size-h3-tablet, $typography-font-size-h3-laptop, $typography-font-size-h3-desktop);
   @include responsive(line-height, $typography-line-height-h3-mobile, $typography-line-height-h3-tablet, $typography-line-height-h3-laptop, $typography-line-height-h3-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h3-mobile, $typography-letter-spacing-h3-tablet, $typography-letter-spacing-h3-laptop, $typography-letter-spacing-h3-desktop);
   font-weight: $typography-font-weight-h3;
 }
 
+/// Applies h4 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h4] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h4($margin: false, $margin-property: $typography-margin-property-h4) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h4-mobile, $typography-margin-h4-tablet, $typography-margin-h4-laptop, $typography-margin-h4-desktop);
   @include responsive(font-size, $typography-font-size-h4-mobile, $typography-font-size-h4-tablet, $typography-font-size-h4-laptop, $typography-font-size-h4-desktop);
   @include responsive(line-height, $typography-line-height-h4-mobile, $typography-line-height-h4-tablet, $typography-line-height-h4-laptop, $typography-line-height-h4-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h4-mobile, $typography-letter-spacing-h4-tablet, $typography-letter-spacing-h4-laptop, $typography-letter-spacing-h4-desktop);
   font-weight: $typography-font-weight-h4;
 }
 
+/// Applies h5 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h5] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h5($margin: false, $margin-property: $typography-margin-property-h5) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h5-mobile, $typography-margin-h5-tablet, $typography-margin-h5-laptop, $typography-margin-h5-desktop);
   @include responsive(font-size, $typography-font-size-h5-mobile, $typography-font-size-h5-tablet, $typography-font-size-h5-laptop, $typography-font-size-h5-desktop);
   @include responsive(line-height, $typography-line-height-h5-mobile, $typography-line-height-h5-tablet, $typography-line-height-h5-laptop, $typography-line-height-h5-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h5-mobile, $typography-letter-spacing-h5-tablet, $typography-letter-spacing-h5-laptop, $typography-letter-spacing-h5-desktop);
   font-weight: $typography-font-weight-h5;
 }
 
+/// Applies h6 styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-h6] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin h6($margin: false, $margin-property: $typography-margin-property-h6) {
   @include h;
   @include margin($margin, $margin-property, $typography-margin-h6-mobile, $typography-margin-h6-tablet, $typography-margin-h6-laptop, $typography-margin-h6-desktop);
   @include responsive(font-size, $typography-font-size-h6-mobile, $typography-font-size-h6-tablet, $typography-font-size-h6-laptop, $typography-font-size-h6-desktop);
   @include responsive(line-height, $typography-line-height-h6-mobile, $typography-line-height-h6-tablet, $typography-line-height-h6-laptop, $typography-line-height-h6-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-h6-mobile, $typography-letter-spacing-h6-tablet, $typography-letter-spacing-h6-laptop, $typography-letter-spacing-h6-desktop);
   font-weight: $typography-font-weight-h6;
 }
 
+/// Applies body styling to element.
+///
+/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param $margin-property [$typography-margin-property-text] - Property to used for margin (if set).
+/// @see {mixin} margin for possible values for $margin.
 @mixin body($margin: false, $margin-property: $typography-margin-property-text) {
   @include text;
   @include margin($margin, $margin-property, $typography-margin-text-mobile, $typography-margin-text-tablet, $typography-margin-text-laptop, $typography-margin-text-desktop);
   @include responsive(font-size, $typography-font-size-text-mobile, $typography-font-size-text-tablet, $typography-font-size-text-laptop, $typography-font-size-text-desktop);
+  @include responsive(line-height, $typography-line-height-text-mobile, $typography-line-height-text-tablet, $typography-line-height-text-laptop, $typography-line-height-text-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-text-mobile, $typography-letter-spacing-text-tablet, $typography-letter-spacing-text-laptop, $typography-letter-spacing-text-desktop);
   font-weight: $typography-font-weight-text;
-  line-height: $typography-line-height-text;
 }
 
+/// Applies "big" body styling to element.
+/// Should be applied in combination with, but after body mixin.
+/// @todo Create stand alone alternative.
 @mixin body--big {
   @include responsive(font-size, $typography-font-size-text-big-mobile, $typography-font-size-text-big-tablet, $typography-font-size-text-big-laptop, $typography-font-size-text-big-desktop);
   @include responsive(line-height, $typography-line-height-text-big-mobile, $typography-line-height-text-big-tablet, $typography-line-height-text-big-laptop, $typography-line-height-text-big-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-text-big-mobile, $typography-letter-spacing-text-big-tablet, $typography-letter-spacing-text-big-laptop, $typography-letter-spacing-text-big-desktop);
 }
 
+/// Applies "small" body styling to element.
+/// Should be applied in combination with, but after body mixin.
+/// @todo Create stand alone alternative.
 @mixin body--small {
   @include responsive(font-size, $typography-font-size-text-small-mobile, $typography-font-size-text-small-tablet, $typography-font-size-text-small-laptop, $typography-font-size-text-small-desktop);
   @include responsive(line-height, $typography-line-height-text-small-mobile, $typography-line-height-text-small-tablet, $typography-line-height-text-small-laptop, $typography-line-height-text-small-desktop);
+  @include responsive(letter-spacing, $typography-letter-spacing-text-small-mobile, $typography-letter-spacing-text-small-tablet, $typography-letter-spacing-text-small-laptop, $typography-letter-spacing-text-small-desktop);
 }
 
 @mixin anchor($hover-to-decorate: $typography-default-hover-link) {
@@ -408,6 +517,18 @@ $typography-style-border: solid !default;
   }
 }
 
+/// Creates a margin if conditions apply (based on $margin), margin can be either:
+///  - "auto", only applies the margin if the element is not the :last-child.
+///  - "true", always applies the margin.
+///  - "false", never applies the margin, this useful when calling this mixin from other mixins.
+///  - string, any other value will result in it being used as the value for $property, ignoring other value argumetns.
+///
+/// @param {string | boolean} $margin [auto] - Keyword ("auto", "true", "false") or a value.
+/// @param {string} $property [$typography-margin-property-text] - Margin property.
+/// @param {string} $value-mobile [$typography-margin-text] - Value for mobile (ignored if set in $margin).
+/// @param {string} $value-tablet [null] - Value for tablet, relies on inheritance if set to null (ignored if set in $margin).
+/// @param {string} $value-laptop [null] - Value for laptop, relies on inheritance if set to null (ignored if set in $margin).
+/// @param {string} $value-desktop [null] - Value for desktop, relies on inheritance if set to null (ignored if set in $margin).
 @mixin margin($margin: auto, $property: $typography-margin-property-text, $value-mobile: $typography-margin-text, $value-tablet: null, $value-laptop: null, $value-desktop: null) {
   @if $margin == auto {
     &:not(:last-child) {
