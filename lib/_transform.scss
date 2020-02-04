@@ -47,13 +47,14 @@
   }
 }
 
-/// Applies absolute position.
+/// Applies absolute position to position specified by one of the arguments.
+/// If an argument is set to null (default) the property is not set.
 /// Note: order differs from traditional top, right, bottom left syntax.
 ///
-/// @param {number (with unit)} $top - Value for top.
-/// @param {number (with unit)} $left - Value for left.
-/// @param {number (with unit)} $right - Value for right.
-/// @param {number (with unit)} $bottom - Value for bottom.
+/// @param {number (with unit)} $top [null] - Value for top.
+/// @param {number (with unit)} $left [null] - Value for left.
+/// @param {number (with unit)} $right [null] - Value for right.
+/// @param {number (with unit)} $bottom [null] - Value for bottom.
 @mixin absolute($top: null, $left: null, $right: null, $bottom: null) {
   position: absolute;
 

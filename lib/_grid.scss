@@ -218,8 +218,8 @@ $grid-margin-10: 100px !default;
 /// Adds !important if $force equals true.
 ///
 /// @param {number} $span - Amount of rows.
-/// @param {list | string} $properties - One or more properties to set.
-/// @param {boolean} $force - Whether to use !important.
+/// @param {list | string} $properties [height] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
 @mixin rows($span, $properties: height, $force: false) {
   @if type-of($properties) != list {
     $properties: ($properties);
