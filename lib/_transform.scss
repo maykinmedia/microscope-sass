@@ -47,7 +47,14 @@
   }
 }
 
-@mixin absolute($top: null, $left: null) {
+/// Applies absolute position.
+/// Note: order differs from traditional top, right, bottom left syntax.
+///
+/// @param {number (with unit)} $top - Value for top.
+/// @param {number (with unit)} $left - Value for left.
+/// @param {number (with unit)} $right - Value for right.
+/// @param {number (with unit)} $bottom - Value for bottom.
+@mixin absolute($top: null, $left: null, $right: null, $bottom: null) {
   position: absolute;
 
   @if $top {
@@ -56,6 +63,14 @@
 
   @if $left {
     left: $left;
+  }
+
+  @if $right {
+    right: $right;
+  }
+
+  @if $bottom {
+    bottom: $bottom;
   }
 }
 
