@@ -2,9 +2,27 @@
 
 > Sass microframework for building scoped user interfaces.
 
-## Install
+Microscope is a microframework with a light footprint (0kb by default) which only applies styling to explicitly selected
+elements* (by you) based on highly configurable defaults.
 
-*Make sure you have [eyeglass](https://www.npmjs.com/package/eyeglass) installed and configured.*
+**0kb footprint**
+
+Microscope only exposes functions, mixins and variables (so no default styling*). CSS is only generated if needed.
+
+**Explicitly selected elements**
+
+Because no default styling is present, Microscope works well in combination with existing styling or other libraries.
+
+**Highly configurable**
+
+Microscope contains a large amount of [settings](https://github.com/maykinmedia/microscope-sass/blob/master/_settings-sample.scss)
+(with sane defaults) which configure the created CSS code. Many settings have variations and/or optional breakpoint 
+specific overrides which allow for more specific configurations. The settings can be specified in a settings file which 
+acts as a digital representation of your [style guide](https://en.wikipedia.org/wiki/Style_guide).
+
+\* With the exception of the `wysiwyg` mixin, which applies text formatting to children automatically (only if called).
+
+## Install
 
 Install with [npm](https://www.npmjs.com/)
 
@@ -12,13 +30,35 @@ Install with [npm](https://www.npmjs.com/)
 npm i microscope-sass --save
 ```
 
-## Usage
+**Eyeglass**
 
- > TODO: More detailed documentation on concepts, libraries and settings.
- 
-Microscope is microframework for building scoped user interfaces, the recommended way of using it is to configure the 
-basic concepts of your [style guide](https://en.wikipedia.org/wiki/Style_guide) via a settings file and to apply them to
-isolated, reusable  blocks using mixins exposed by one or more libraries.
+Microsope supports [Eyeglass](https://www.npmjs.com/package/eyeglass) in which case it can be referenced as "microscope".
+
+Eygeglass style import: 
+
+```scss
+@import 'microscope/<library>';
+```
+
+**includePaths**
+
+Add "node_modules/" to the `includePaths` setting of you sass environment. 
+
+```js
+...
+includePaths: ["node_modules/"],
+...
+```
+
+includePaths style import: 
+
+```scss
+@import 'microscope-sass/lib/<library>';
+```
+
+Note: Further documentations assumes an Eyeglass installation and imports.
+
+## Usage
  
 **Configuration**
 
@@ -33,8 +73,8 @@ Save the settings file and make sure to include it as the first file in you main
 
 **Libraries**
 
-Microscope exposes the following libraries, please refer the their source code to see what variables
-and mixins are exposed.
+Microscope exposes the following libraries, please refer to their source code and docstrings (for now) to see what
+functions, mixins and variables are exposed.
 
 - [animation](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_animation.scss)
 - [browser](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_browser.scss)
@@ -104,5 +144,5 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-Copyright © 2019 [Maykin Media](https://www.maykinmedia.nl/)
+Copyright © 2020 [Maykin Media](https://www.maykinmedia.nl/)
 Licensed under the MIT license.
