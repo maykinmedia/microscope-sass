@@ -293,9 +293,9 @@ $typography-style-border: solid !default;
 /// Applies styling to children based on their tag name, this is particularly useful when dealing with uncontrolled
 /// markup (like the output from WYSIWYG editors or third party code).
 ///
-/// Note: Styling based on tag names is typically not a good idea as it create a strict binding between document
-/// structure and representation. In many cases, a better idea would be to use a class selector to apply styling
-// (which acts independent of the tag name).
+/// Note: Styling based on tag names is typically not a good idea as it creates a strict binding between document
+/// structure and it's representation. In many cases, a better idea would be to use a class selector to apply styling
+/// (which acts independent of the tag name).
 ///
 /// @param $margin [auto] - Value for margin mixin, can be a value or a keyword.
 /// @param $not-me [null] - An optional selector to exclude from automated styling (using a :not pseudo-class).
