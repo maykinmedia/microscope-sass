@@ -112,8 +112,8 @@ selectors so styles are remain scoped and don't leak out to other places.
 @import 'microscope/typography';
 
 .header__title {
-    @include color-primmary;
     @include h1;
+    @include color-primmary;
 }
 ```
 
