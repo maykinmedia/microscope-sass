@@ -7,7 +7,48 @@ $breakpoint-tablet: 768px !default;
 $breakpoint-laptop: 992px !default;
 $breakpoint-desktop: 1200px !default;
 
-@mixin responsive($property, $value-mobile, $value-tablet, $value-laptop: null, $value-desktop: null) {
+$responsive-default-media: all !default;
+
+
+/// Wraps @content in a media query based on $min, $max and $media.
+/// If either $min and/or $max is set to null (default) the specific expression is not set.
+///
+/// @param {number (with unit)} $min [null] - Minimal screen width.
+/// @param {number (with unit)} $max [null] - Maximum screen width.
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin breakpoint($min: null, $max: null, $media: $responsive-default-media) {
+
+  @if $min and not $max {
+    @media #{$media} and (min-width: $min) {
+      @content;
+    }
+  }
+
+  @if not $min and $max {
+    @media #{$media} and (max-width: $max) {
+      @content;
+    }
+  }
+
+  @if $min and $max {
+    @media #{$media} and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}
+
+/// Sets $property value based on active breakpoint.
+/// Requires at least, $value-mobile and $value-tablet to be set.
+/// If any value is the same as the previous, or set to null (default), no media query is generated and styling relies
+/// on inheritance of the previous breakpoint.
+///
+/// @param {string} $property - The property to set.
+/// @param {string} $value-mobile - The mobile value.
+/// @param {string} $value-tablet - The tablet value.
+/// @param {string} $value-laptop [null] - The laptop value.
+/// @param {string} $value-desktop [null] - The desktop value.
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin responsive($property, $value-mobile, $value-tablet, $value-laptop: null, $value-desktop: null, $media: $responsive-default-media) {
   #{$property}: $value-mobile;
 
   @if $value-tablet and $value-tablet != $value-mobile {
@@ -29,62 +70,61 @@ $breakpoint-desktop: 1200px !default;
   }
 }
 
-@mixin mobile-only {
-  @media (max-width: $breakpoint-tablet - 1px) {
+/// Wraps @content in a media query matching screen sizes smaller than $breakpoint-tablet (mobile).
+///
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin mobile-only($media: $responsive-default-media) {
+  @include breakpoint($max: $breakpoint-tablet - 1px, $media: $media) {
     @content;
   }
 }
 
-@mixin tablet($only: false) {
+/// Wraps @content in a media query matching screen sizes larger or equal than $breakpoint-tablet.
+///
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin tablet($only: false, $media: $responsive-default-media) {
   @if $only == false {
-    @media (min-width: $breakpoint-tablet) {
+    @include breakpoint($breakpoint-tablet, $media: $media) {
       @content;
     }
   } @else {
-    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-laptop - 1px) {
+    @include breakpoint($breakpoint-tablet, $breakpoint-laptop - 1px, $media: $media) {
       @content;
     }
   }
 }
 
-@mixin laptop($only: false) {
+/// Wraps @content in a media query matching screen sizes larger or equal than $breakpoint-laptop.
+//
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin laptop($only: false, $media: $responsive-default-media) {
   @if $only == false {
-    @media (min-width: $breakpoint-laptop) {
+    @include breakpoint($breakpoint-laptop, $media: $media) {
       @content;
     }
   } @else {
-    @media (min-width: $breakpoint-laptop) and (max-width: $breakpoint-desktop - 1px) {
+    @include breakpoint($breakpoint-laptop, $breakpoint-desktop - 1px, $media: $media) {
       @content;
     }
   }
 }
 
-@mixin desktop() {
-  @media (min-width: $breakpoint-desktop) {
+/// Wraps @content in a media query matching screen sizes larger or equal than $breakpoint-desktop.
+//
+/// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
+@mixin desktop($media: $responsive-default-media) {
+  @include breakpoint($breakpoint-desktop, $media: $media) {
     @content;
   }
 }
 
-@mixin breakpoint($min: null, $max: null) {
-  @if $min and not $max {
-    @media (min-width: $min) {
-      @content;
-    }
-  }
-
-  @if not $min and $max {
-    @media (max-width: $max) {
-      @content;
-    }
-  }
-
-  @if $min and $max {
-    @media (min-width: $min) and (max-width: $max) {
-      @content;
-    }
-  }
-}
-
+/// Hides element (display: none;) by default, only showing it on mobile screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
 @mixin show-on-mobile($display: block) {
   display: none;
   @include mobile-only {
@@ -92,31 +132,46 @@ $breakpoint-desktop: 1200px !default;
   }
 }
 
+/// Hides element (display: none;) by default, only showing it on tablet screen sizes.
+///
+/// @param {string} $display [block] - Display mode used when visible.
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
 @mixin show-on-tablet($display: block, $only: false) {
   display: none;
-  
+
   @include tablet($only) {
     display: $display;
   }
 }
 
+/// Hides element (display: none;) by default, only showing it on laptop screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
 @mixin show-on-laptop($display: block, $only: false) {
   display: none;
-  
+
   @include laptop($only) {
     display: $display;
   }
 }
 
+/// Hides element (display: none;) by default, only showing it on desktop screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
 @mixin show-on-desktop($display: block) {
   display: none;
-  
+
   @include desktop($only) {
     display: $display;
   }
 }
 
-
+/// Shows element by default, only hiding it (display: none;) on mobile screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
 @mixin hide-on-mobile($display: block) {
   display: $display;
   @include mobile-only {
@@ -124,25 +179,40 @@ $breakpoint-desktop: 1200px !default;
   }
 }
 
+/// Shows element by default, only hiding it (display: none;) on tablet screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
 @mixin hide-on-tablet($display: block, $only: false) {
   display: $display;
-  
+
   @include tablet($only) {
     display: none;
   }
 }
 
+/// Shows element by default, only hiding it (display: none;) on laptop screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
 @mixin hide-on-laptop($display: block, $only: false) {
   display: $display;
-  
+
   @include laptop($only) {
     display: none;
   }
 }
 
+/// Shows element by default, only hiding it (display: none;) on desktop screen sizes.
+//
+/// @param {string} $display [block] - Display mode used when visible.
+/// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
+/// breakpoints.
 @mixin hide-on-desktop($display: block) {
   display: $display;
-  
+
   @include desktop($only) {
     display: none;
   }
