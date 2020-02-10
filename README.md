@@ -30,14 +30,29 @@ Install with [npm](https://www.npmjs.com/)
 npm i microscope-sass --save
 ```
 
+**Webpack**
+
+To use Microscope with [webpack](https://webpack.js.org/), install and configure
+[sass-loader](https://webpack.js.org/loaders/sass-loader/).
+
+Webpack style import: 
+
+```scss
+@import '~microscope-sass/lib/<library>';  // Import single library (recommended).
+@import '~microscope-sass';                // Import everything at once.
+```
+
 **Eyeglass**
+
+_For historic reasons, the Eyeglass import is referenced as "microscope" insead of "microscope-sass"._
 
 Microsope supports [Eyeglass](https://www.npmjs.com/package/eyeglass) in which case it can be referenced as "microscope".
 
 Eygeglass style import: 
 
 ```scss
-@import 'microscope/<library>';
+@import 'microscope/lib/<library>';  // Import single library (recommended).
+@import 'microscope';                // Import everything at once.
 ```
 
 **includePaths**
@@ -53,10 +68,11 @@ includePaths: ["node_modules/"],
 includePaths style import: 
 
 ```scss
-@import 'microscope-sass/lib/<library>';
+@import 'microscope-sass/lib/<library>';  // Import single library (recommended).
+@import 'microscope-sass';                // Import everything at once.
 ```
 
-Note: Further documentations assumes an Eyeglass installation and imports.
+Note: Further documentations assumes a webpack installation and webpack style imports.
 
 ## Usage
  
@@ -91,15 +107,15 @@ In any of your (nested) .scss files, import the libraries you need. The librarie
 custom settings if set.
 
 ```scss
-@import 'microscope/grid';
+@import '~microscope-sass/lib/grid';
 ```
 
-**Importing everything at once**
+**Import everything at once**
 
 It's also possible to import all libraries at once.
 
 ```scss
-@import 'microscope';
+@import '~microscope-sass';
 ```
 
 **Applying styles**
@@ -108,8 +124,8 @@ Microscope is designed to help styling isolated bits of HTML. The recommended us
 selectors so styles are remain scoped and don't leak out to other places.
 
 ```scss
-@import 'microscope/color';
-@import 'microscope/typography';
+@import '~microscope-sass/lib/color';
+@import '~microscope-sass/lib/typography';
 
 .header__title {
     @include h1;
@@ -123,7 +139,7 @@ based on their tag name. It's recommended to only use this when the internal str
 
 
 ```scss
-@import 'microscope/typography';
+@import '~microscope-sass/lib/typography';
 
 .wysiwyg {
     @include wysiwyg;

@@ -165,6 +165,24 @@ $grid-margin-10: 100px !default;
   }
 }
 
+/// Shorthand for columns-responsive and omega-smart.
+/// Sets columns "span" to element and automatically Sets margin-right to 0 if the element is expected to be the last
+/// within a row.
+///
+/// Element is expected to be last if the corresponding span times the "nth-child" equals the corresponding "columns"
+/// setting. This assumes all columns to have the same span.
+///
+/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
+///
+/// @param {number} $span-mobile - Mobile element span.
+/// @param {number} $span-tablet - Tablet element span.
+/// @param {number} $span-laptop - Laptop element span.
+/// @param {number} $span-desktop - Desktop element span.
+@mixin columns-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop) {
+  @include columns-responsive($span-mobile, $span-tablet, $span-laptop, $span-desktop);
+  @include omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop);
+}
+
 @mixin columns-responsive($span-mobile, $span-tablet, $span-laptop: $span-tablet, $span-desktop: $span-laptop, $correction-mobile: 0px, $correction-tablet: $correction-mobile, $correction-laptop: $correction-tablet, $correction-desktop: $correction-laptop, $property: width) {
   $width-mobile: _columns($span-mobile, $grid-columns-mobile, $grid-gutter-mobile, $correction-mobile);
   $width-tablet: _columns($span-tablet, $grid-columns-tablet, $grid-gutter-tablet, $correction-tablet);
@@ -213,6 +231,13 @@ $grid-margin-10: 100px !default;
   }
 }
 
+/// Adds a gutter (space between columns) to element.
+///
+/// @param {string} $property [margin-right] - Property to set.
+/// @param {number} $multiplier [1] - The amount of times the gutter size is applied.
+@mixin gutter($property: margin-right, $multiplier: 1) {
+  @include responsive($property, $grid-gutter-mobile * $multiplier, $grid-gutter-tablet * $multiplier, $grid-gutter-laptop * $multiplier, $grid-gutter-desktop * $multiplier);
+}
 
 /// Applies rows height by setting each value in $properties to $span * $grid-row-height.
 /// Adds !important if $force equals true.
@@ -236,6 +261,11 @@ $grid-margin-10: 100px !default;
   }
 }
 
+/// Sets $property (defaults to margin-right) to 0, typically used for clearing gutter margin.
+/// Adds !important if $force equals true.
+///
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set.
 @mixin omega($force: false, $property: margin-right) {
   @if $force == true {
     #{$property}: 0 !important;
@@ -244,6 +274,20 @@ $grid-margin-10: 100px !default;
   }
 }
 
+/// Automatically Sets $property to 0 if the element is expected to be the last within a row.
+///
+/// Element is expected to be last if the corresponding "span" times the "nth-child" equals the corresponding "columns"
+/// setting. This assumes all columns to have the same span.
+///
+/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span-mobile - Mobile element span.
+/// @param {number} $span-tablet - Tablet element span.
+/// @param {number} $span-laptop - Laptop element span.
+/// @param {number} $span-desktop - Desktop element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
 @mixin omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop, $force: false, $property: margin-right) {
   @include mobile-only {
     @include omega-smart-mobile($span-mobile, $force, $property)
@@ -259,29 +303,75 @@ $grid-margin-10: 100px !default;
   }
 }
 
+/// Applies omega-smart to the mobile breakpoint.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
+/// @see {mixin} omega-smart for usage.
 @mixin omega-smart-mobile($span, $force: false, $property: margin-right) {
   @include _omega-smart($span, $grid-columns-mobile, $force, $property);
 }
 
+/// Applies omega-smart to the tablet breakpoint.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
+/// @see {mixin} omega-smart for usage.
 @mixin omega-smart-tablet($span, $force: false, $property: margin-right) {
   @include _omega-smart($span, $grid-columns-tablet, $force, $property);
 }
 
+/// Applies omega-smart to the laptop breakpoint.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
+/// @see {mixin} omega-smart for usage.
 @mixin omega-smart-laptop($span, $force: false, $property: margin-right) {
   @include _omega-smart($span, $grid-columns-laptop, $force, $property);
 }
 
+/// Applies omega-smart to the desktop breakpoint.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
+/// @see {mixin} omega-smart for usage.
 @mixin omega-smart-desktop($span, $force: false, $property: margin-right) {
   @include _omega-smart($span, $grid-columns-desktop, $force, $property);
 }
 
-@mixin gutter($property: margin-right, $multiplier: 1) {
-  @include responsive($property, $grid-gutter-mobile * $multiplier, $grid-gutter-tablet * $multiplier, $grid-gutter-laptop * $multiplier, $grid-gutter-desktop * $multiplier);
+/// Applies omega-smart.
+/// Adds !important if $force equals true.
+///
+/// @param {number} $span - Element span.
+/// @param {total} $span - Total number of columns within a row.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
+/// @see {mixin} omega-smart for usage.
+@mixin _omega-smart($span, $total, $force: false, $property: margin-right) {
+  @if $span == $total {
+    @include omega($force, $property)
+  } @else {
+    $columns: $total / $span;
+
+    &:nth-child(#{$columns}n) {
+      @include omega($force, $property);
+    }
+
+    &:nth-child(#{$columns}n+1) {
+      clear: left;
+    }
+  }
 }
 
 // Private API
-
-
 @function _columns($span, $total, $gutter, $correction: 0px) {
   @if $span == $total {
     @return 100%;
@@ -314,18 +404,6 @@ $grid-margin-10: 100px !default;
 
     &:last-child {
       @include omega;
-    }
-  }
-}
-
-@mixin _omega-smart($span, $total, $force: false, $property: margin-right) {
-  @if $span == $total {
-    @include omega($force, $property)
-  } @else {
-    $columns: $total / $span;
-
-    &:nth-child(#{$columns}n) {
-      @include omega($force, $property);
     }
   }
 }

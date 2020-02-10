@@ -1,6 +1,6 @@
 {
   "name": "microscope-sass",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Sass microframework for building scoped user interfaces.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,8 @@
     "name": "microscope"
   },
   "main": "eyeglass-exports.js",
+  "style": "lib/_microscope.scss",
+
   "directories": {
     "lib": "lib"
   },
