@@ -66,8 +66,10 @@ $grid-margin-10: 100px !default;
 
 
 /// Can be used in conjunction with container to increase the container's size configuration to big.
+/// Should be applied after container mixin.
 ///
 /// @param {boolean} $padding [true] - Whether to use (big) container padding.
+/// @todo Create standalone alternative.
 @mixin container--big($padding: true) {
   width: calc(100% - #{2 * $grid-container-margin-big});
   max-width: $grid-container-size-big;
@@ -83,8 +85,10 @@ $grid-margin-10: 100px !default;
 
 
 /// Can be used in conjunction with container to decrease the container's size configuration to small.
+/// Should be applied after container mixin.
 ///
 /// @param {boolean} $padding [true] - Whether to use (small) container padding.
+/// @todo Create standalone alternative.
 @mixin container--small() {
   @include container-padding('small');
   width: calc(100% - #{2 * $grid-container-margin-small});
