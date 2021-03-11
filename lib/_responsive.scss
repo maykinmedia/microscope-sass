@@ -1,3 +1,5 @@
+@import 'util';
+
 $breakpoint-mobile-s: 320px !default;
 $breakpoint-mobile-m: 375px !default;
 $breakpoint-mobile-l: 425px !default;
@@ -37,35 +39,35 @@ $responsive-default-media: all !default;
   }
 }
 
-/// Sets $property value based on active breakpoint.
+/// Applies specific value to all $properties based on active breakpoint.
 /// Requires at least, $value-mobile and $value-tablet to be set.
 /// If any value is the same as the previous, or set to null (default), no media query is generated and styling relies
 /// on inheritance of the previous breakpoint.
 ///
-/// @param {string} $property - The property to set.
+/// @param {list | string} $properties - One or more properties to set.
 /// @param {string} $value-mobile - The mobile value.
 /// @param {string} $value-tablet - The tablet value.
 /// @param {string} $value-laptop [null] - The laptop value.
 /// @param {string} $value-desktop [null] - The desktop value.
 /// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
-@mixin responsive($property, $value-mobile, $value-tablet, $value-laptop: null, $value-desktop: null, $media: $responsive-default-media) {
-  #{$property}: $value-mobile;
+@mixin responsive($properties, $value-mobile, $value-tablet, $value-laptop: null, $value-desktop: null, $media: $responsive-default-media) {
+  @include properties($properties, $value-mobile);
 
   @if $value-tablet and $value-tablet != $value-mobile {
     @include tablet {
-      #{$property}: $value-tablet;
+      @include properties($properties, $value-tablet);
     }
   }
 
   @if $value-laptop and $value-laptop != $value-tablet {
     @include laptop {
-      #{$property}: $value-laptop;
+      @include properties($properties, $value-laptop);
     }
   }
 
   @if $value-desktop and $value-desktop != $value-laptop {
     @include desktop {
-      #{$property}: $value-desktop;
+      @include properties($properties, $value-desktop);
     }
   }
 }
