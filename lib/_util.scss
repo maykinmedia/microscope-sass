@@ -40,5 +40,23 @@ $util-shadow-default-spread: 0 !default;
 }
 
 @mixin outline($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
-    outline: $size $style $color;
+  outline: $size $style $color;
+}
+
+
+/// Applies $value to all $properties.
+///
+/// @param {list | string} $properties - One or more properties to set.
+/// @param {*} $value - Value to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin properties($properties, $value, $force: false) {
+  $important: if($force, !important, null);
+
+  @if type-of($properties) != list {
+    $properties: ($properties);
+  }
+
+  @each $property in $properties {
+    #{$property}: $value#{$important};
+  }
 }
