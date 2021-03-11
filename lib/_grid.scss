@@ -41,7 +41,7 @@ $grid-margin-10: 100px !default;
 
 
 /// Defines a (float/flexbox) container
-/// Note: recommended value for $clearfix is 'flex'.
+/// Note: recommended value for `$clearfix` is 'flex'.
 ///
 /// @param {boolean | string} $clearfix [true] - If boolean: whether to use a clearfix, if 'flex': use flexbox.
 /// @param {boolean} $padding [true] - Whether to use container padding.
@@ -65,7 +65,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Can be used in conjunction with container to increase the container's size configuration to big.
+/// Can be used in conjunction with container to increase the container's size configuration to "big".
 /// Should be applied after container mixin.
 ///
 /// @param {boolean} $padding [true] - Whether to use (big) container padding.
@@ -84,7 +84,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Can be used in conjunction with container to decrease the container's size configuration to small.
+/// Can be used in conjunction with container to decrease the container's size configuration to "small".
 /// Should be applied after container mixin.
 ///
 /// @param {boolean} $padding [true] - Whether to use (small) container padding.
@@ -111,8 +111,8 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets $grid-container-margin, $grid-container-margin-big or $grid-container-margin-small (based on $size) to
-/// $properties, adding a margin.
+/// Sets `$grid-container-margin`, `$grid-container-margin-big` or `$grid-container-margin-small` (based on `$size`) to
+/// `$properties`, adding a margin.
 ///
 /// @param {string} $size ['normal'] - Container size preset.
 /// @param {list | string} $properties [('margin-left', 'margin-right')] - One or more properties to set.
@@ -134,8 +134,8 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets $grid-container-padding, $grid-container-padding-big or $grid-container-padding-small (based on $size) to
-/// $properties, adding a margin.
+/// Sets `$grid-container-padding`, `$grid-container-padding-big` or `$grid-container-padding-small` (based on `$size`)
+/// to `$properties`, adding a margin.
 ///
 /// @param {string} $size ['normal'] - Container size preset.
 /// @param {list | string} $properties [('padding-left', 'padding-right')] - One or more properties to set.
@@ -216,7 +216,7 @@ $grid-margin-10: 100px !default;
 /// Element is expected to be last if the corresponding span times the "nth-child" equals the corresponding "columns"
 /// setting. This assumes all columns to have the same span.
 ///
-/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
+/// Additionally, `clear: left;` is set to the first element after an element found to be the last within a row.
 ///
 /// @param {number} $span-mobile - Mobile element span.
 /// @param {number} $span-tablet - Tablet element span.
@@ -264,7 +264,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets the column span and gutter for the (mobile) breakpoint breakpoint preset.
+/// Sets the column `$span` and `$gutter` for the (mobile) breakpoint breakpoint preset.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $correction [0px] - Correction.
@@ -276,7 +276,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets the column span and gutter for the (tablet) breakpoint breakpoint preset.
+/// Sets the column `$span` and `$gutter` for the (tablet) breakpoint breakpoint preset.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $correction [0px] - Correction.
@@ -288,7 +288,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets the column span and gutter for the (laptop) breakpoint breakpoint preset.
+/// Sets the column `$span` and `$gutter` for the (laptop) breakpoint breakpoint preset.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $correction [0px] - Correction.
@@ -300,7 +300,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets the column span and gutter for the (desktop) breakpoint breakpoint preset.
+/// Sets the column `$span` and `$gutter` for the (desktop) breakpoint breakpoint preset.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $correction [0px] - Correction.
@@ -318,6 +318,7 @@ $grid-margin-10: 100px !default;
 /// @param {number} $total - Total number of columns within a row.
 /// @param {number} $gutter - Gutter size.
 /// @param {number} $correction [0px] - Correction.
+/// @return {string} - Value calculation.
 @function columns($span, $total, $gutter, $correction: 0px) {
   @if $span == $total {
     @return 100%;
@@ -330,7 +331,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets the column span and gutter.
+/// Sets the column `$span` and `$gutter`.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $total - Total number of columns within a row.
@@ -375,7 +376,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets all $properties to 0, typically used for clearing gutter margin.
+/// Sets all `$properties` to 0, typically used for clearing gutter margin.
 ///
 /// @param {boolean} $force [false] - Whether to use !important.
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
@@ -384,13 +385,13 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Sets all $properties to 0 if the element is expected to be the last within a row.
+/// Sets all `$properties` to 0 if the element is expected to be the last within a row.
 ///
 /// Element is expected to be last if the corresponding "span" times the "nth-child" equals the corresponding "columns"
 /// setting. This assumes all columns to have the same span.
 ///
-/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
-/// Adds !important if $force equals true.
+/// Additionally, `clear: left;` is set to the first element after an element found to be the last within a row.
+/// Adds !important if `$force` equals true.
 ///
 /// @param {number} $span-mobile - Mobile element span.
 /// @param {number} $span-tablet - Tablet element span.
@@ -414,7 +415,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies omega-smart to the (mobile) breakpoint.
+/// Applies `omega-smart` to the (mobile) breakpoint.
 ///
 /// @param {number} $span - Column span.
 /// @param {boolean} $force [false] - Whether to use !important.
@@ -425,7 +426,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies omega-smart to the (tablet) breakpoint.
+/// Applies `omega-smart` to the (tablet) breakpoint.
 ///
 /// @param {number} $span - Column span.
 /// @param {boolean} $force [false] - Whether to use !important.
@@ -436,7 +437,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies omega-smart to the (laptop) breakpoint.
+/// Applies `omega-smart` to the (laptop) breakpoint.
 ///
 /// @param {number} $span - Column span.
 /// @param {boolean} $force [false] - Whether to use !important.
@@ -447,7 +448,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies omega-smart to the (desktop) breakpoint.
+/// Applies `omega-smart` to the (desktop) breakpoint.
 ///
 /// @param {number} $span - Column span.
 /// @param {boolean} $force [false] - Whether to use !important.
@@ -458,8 +459,8 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies omega-smart.
-/// Adds !important if $force equals true.
+/// Applies omega if column is expected to be the last within the row.
+/// Adds !important if `$force` equals true.
 ///
 /// @param {number} $span - Column span.
 /// @param {number} $total - Total number of columns within a row.
@@ -482,7 +483,7 @@ $grid-margin-10: 100px !default;
 }
 
 
-/// Applies row height by setting each value in $properties to $span * $grid-row-height.
+/// Applies row height by setting each value in `$properties` to `$span * $grid-row-height`.
 ///
 /// @param {number} $span - Amount of rows.
 /// @param {list | string} $properties [height] - One or more properties to set.

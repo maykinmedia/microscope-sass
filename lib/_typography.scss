@@ -333,7 +333,7 @@ $typography-style-border: solid !default;
 }
 
 
-/// Can be used in conjunction with body to increase the font size configuration to big.
+/// Can be used in conjunction with body to increase the font size configuration to "big".
 /// Should be applied after body mixin.
 /// @todo Create standalone alternative.
 @mixin body--big {
@@ -343,7 +343,7 @@ $typography-style-border: solid !default;
 }
 
 
-/// Can be used in conjunction with body to increase the font size configuration to small.
+/// Can be used in conjunction with body to increase the font size configuration to "small".
 /// Should be applied after body mixin.
 /// @todo Create standalone alternative.
 @mixin body--small {

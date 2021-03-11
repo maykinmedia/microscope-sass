@@ -99,6 +99,7 @@
 /// Returns the (transform) value for a given rotation.
 ///
 /// @param {number} $deg - Degrees of rotation.
+/// @return {string} - Transform value.
 @function tr_rotate($deg) {
   @return rotate(#{$deg}deg);
 }
@@ -121,6 +122,7 @@
 ///
 /// @param {number} $sx - X scale factor.
 /// @param {number} $sy [null] - Y scale factor, if omitted: $sx scale factor is applied to both x and y.
+/// @return {string} - Transform value.
 @function tr_scale($sx, $sy: null) {
   @if $sx and $sy {
     @return scale(#{$sx}, #{$sy});
@@ -143,6 +145,7 @@
 ///
 /// @param {number} $x [null] - X translation amount.
 /// @param {number} $y [null] - Y translation amount.
+/// @return {string} - Transform value.
 @function tr_translate($x: null, $y: null) {
   @if $x and $y {
     @return translate(#{$x}, #{$y});

@@ -52,12 +52,12 @@ $util-shadow-default-spread: 0 !default;
 }
 
 
-/// Replace `$search` with `$replace` in `$string`
-/// @author Hugo Giraudel
-/// @param {string} $string - Initial string
-/// @param {string} $search - Substring to replace
-/// @param {string} $replace ('') - New value
-/// @return {string} - Updated string
+/// Replace `$search` with `$replace` in `$string`.
+/// @author Hugo Giraudel.
+/// @param {string} $string - Initial string.
+/// @param {string} $search - Substring to replace.
+/// @param {string} $replace ('') - New value.
+/// @return {string} - Updated string.
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
