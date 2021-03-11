@@ -83,6 +83,19 @@ $util-shadow-default-spread: 0 !default;
 }
 
 
+/// Remove the unit of a length.
+/// @author Hugo Giraudel.
+/// @param {numer} $number - Number to remove unit from.
+/// @return {number} - Unitless number.
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
 /// Adds outline to all elements (* selector on root).
 ///
 /// @param {string} $color [$typography-color-border] - Color of the outline.
