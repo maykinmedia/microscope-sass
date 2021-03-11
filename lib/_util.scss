@@ -8,6 +8,56 @@ $util-shadow-default-blur: 1rem !default;
 $util-shadow-default-spread: 0 !default;
 
 
+/// Applies an aspect ratio (e.g. 4:3, or 21) to element by adding a vertical padding and setting the height to 0.
+/// This requires a child elements to be positioned on top of this element (e.g. `@include overlay;`).
+///
+/// @param {number} $width [null] - Value for width.
+/// @param {number} $height [null] - Value for height.
+/// @param {list | string} $properties [padding-top] - One or more properties to set.
+/// @param {string | boolean} $clear-height ['auto'] - Whether to set the height to 0.
+@mixin aspect-ratio($width, $height, $properties: padding-top, $clear-height: auto) {
+  @include properties($properties, percentage($height / $width));
+
+  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
+    height: 0;
+  }
+}
+
+
+/// Adds outline to all elements (* selector on root).
+///
+/// @param {string} $color [$typography-color-border] - Color of the outline.
+/// @param {number} $size [$typography-size-border] - Size of the outline.
+/// @param {string} $style [$typography-style-border] - Style of the outline.
+/// @see {mixin} outline.
+@mixin inspect($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
+  @at-root {
+    * {
+      @include outline($color, $size, $style);
+    }
+  }
+}
+
+
+/// Adds a (box) shadow.
+///
+/// @param {string} $position ['bottom] - Can be one of: 'all', 'top', 'right', bottom' or 'left'.
+/// @param {string} $color [$util-shadow-default-color] - Color of the shadow.
+/// @param {number} $offset-x [$util-shadow-default-offset-x] - X offset of the shadow.
+/// @param {number} $offset-y [$util-shadow-default-offset-y] - X offset of the shadow.
+/// @param {number} $blur [$util-shadow-default-blur] - Blur amount of the shadow.
+/// @param {number} $spread [$util-shadow-default-spread] - Spread amount of the shadow.
+@mixin shadow($color: $util-shadow-default-color, $offset-x: $util-shadow-default-offset-x, $offset-y: $util-shadow-default-offset-y, $blur: $util-shadow-default-blur, $spread: $util-shadow-default-spread) {
+  box-shadow: $offset-x $offset-y $blur $spread $color;
+}
+
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {string} $string - Initial string
+/// @param {string} $search - Substring to replace
+/// @param {string} $replace ('') - New value
+/// @return {string} - Updated string
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
@@ -19,32 +69,17 @@ $util-shadow-default-spread: 0 !default;
 }
 
 
-@mixin aspect-ratio($width, $height, $property: padding-top, $clear-height: auto) {
-  #{$property}: percentage($height / $width);
-
-  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
-    height: 0;
-  }
-}
-
-@mixin shadow($color: $util-shadow-default-color, $offset-x: $util-shadow-default-offset-x, $offset-y: $util-shadow-default-offset-y, $blur: $util-shadow-default-blur, $spread: $util-shadow-default-spread) {
-  box-shadow: $offset-x $offset-y $blur $spread $color;
-}
-
-@mixin inspect {
-  @at-root {
-    * {
-      @include outline;
-    }
-  }
-}
-
+/// Adds outline to all elements (* selector on root).
+///
+/// @param {string} $color [$typography-color-border] - Color of the outline.
+/// @param {number} $size [$typography-size-border] - Size of the outline.
+/// @param {string} $style [$typography-style-border] - Style of the outline.
 @mixin outline($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
   outline: $size $style $color;
 }
 
 
-/// Applies $value to all $properties.
+/// Applies `$value` to all `$properties`.
 ///
 /// @param {list | string} $properties - One or more properties to set.
 /// @param {*} $value - Value to set.
