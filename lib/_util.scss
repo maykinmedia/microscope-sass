@@ -1,10 +1,24 @@
+////
+/// Microscope(-sass) util library.
+/// @group util
+////
+
+/// @name Import util library.
+/// @example @import '~microscope-sass/lib/util';
+
 @import 'color';
 @import 'typography';
 
+
+///
 $util-shadow-default-color: rgba($color-black, 0.15) !default;
+///
 $util-shadow-default-offset-x: 0 !default;
+///
 $util-shadow-default-offset-y: 0.5rem !default;
+///
 $util-shadow-default-blur: 1rem !default;
+///
 $util-shadow-default-spread: 0 !default;
 
 

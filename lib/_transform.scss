@@ -1,3 +1,12 @@
+////
+/// Microscope(-sass) transform library.
+/// @group transform
+////
+
+/// @name Import transform library.
+/// @example @import '~microscope-sass/lib/transform';
+
+
 /// Applies absolute position to position specified by one of the arguments.
 /// If an argument is set to null (default) the property is not set.
 /// Note: order differs from traditional top, right, bottom left syntax.

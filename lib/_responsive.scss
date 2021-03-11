@@ -1,14 +1,30 @@
+////
+/// Microscope(-sass) responsive library.
+/// @group responsive
+////
+
+/// @name Import responsive library.
+/// @example @import '~microscope-sass/lib/responsive';
+
 @import 'util';
 
+
+///
 $breakpoint-mobile-s: 320px !default;
+///
 $breakpoint-mobile-m: 375px !default;
+///
 $breakpoint-mobile-l: 425px !default;
 
+///
 $breakpoint-tablet: 768px !default;
 
+///
 $breakpoint-laptop: 992px !default;
+///
 $breakpoint-desktop: 1200px !default;
 
+///
 $responsive-default-media: all !default;
 
 
@@ -106,7 +122,7 @@ $responsive-default-media: all !default;
 
 
 /// Wraps content block in a media query matching screen sizes larger or equal than `$breakpoint-laptop`.
-//
+///
 /// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
 /// breakpoints.
 /// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
@@ -125,7 +141,7 @@ $responsive-default-media: all !default;
 
 
 /// Wraps content block in a media query matching screen sizes larger or equal than `$breakpoint-desktop`.
-//
+///
 /// @param {string} $media [$responsive-default-media] - Media (e.g. all, screen or print).
 /// @content Rules to apply when screen size meets condition.
 @mixin desktop($media: $responsive-default-media) {
@@ -136,7 +152,7 @@ $responsive-default-media: all !default;
 
 
 /// Hides element (`display: none;`) by default, only showing it on mobile screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @content Rules to apply when screen size meets condition.
 @mixin show-on-mobile($display: block) {
@@ -163,7 +179,7 @@ $responsive-default-media: all !default;
 
 
 /// Hides element (`display: none;`) by default, only showing it on laptop screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
 /// breakpoints.
@@ -178,7 +194,7 @@ $responsive-default-media: all !default;
 
 
 /// Hides element (`display: none;`) by default, only showing it on desktop screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @content Rules to apply when screen size meets condition.
 @mixin show-on-desktop($display: block) {
@@ -191,7 +207,7 @@ $responsive-default-media: all !default;
 
 
 /// Shows element by default, only hiding it (`display: none;`) on mobile screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @content Rules to apply when screen size meets condition.
 @mixin hide-on-mobile($display: block) {
@@ -203,7 +219,7 @@ $responsive-default-media: all !default;
 
 
 /// Shows element by default, only hiding it (`display: none;`) on tablet screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
 /// breakpoints.
@@ -218,7 +234,7 @@ $responsive-default-media: all !default;
 
 
 /// Shows element by default, only hiding it (`display: none;`) on laptop screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
 /// breakpoints.
@@ -233,7 +249,7 @@ $responsive-default-media: all !default;
 
 
 /// Shows element by default, only hiding it (`display: none;`) on desktop screen sizes.
-//
+///
 /// @param {string} $display [block] - Display mode used when visible.
 /// @param {boolean} $only [false] - If true, adds max-width expression to media query preventing inheritance by larger
 /// breakpoints.

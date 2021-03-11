@@ -16,8 +16,8 @@ Because no default styling is present, Microscope works well in combination with
 **Highly configurable**
 
 Microscope contains a large amount of [settings](https://github.com/maykinmedia/microscope-sass/blob/master/_settings-sample.scss)
-(with sane defaults) which configure the created CSS code. Many settings have variations and/or optional breakpoint 
-specific overrides which allow for more specific configurations. The settings can be specified in a settings file which 
+(with sane defaults) which configure the created CSS code. Many settings have variations and/or optional breakpoint
+specific overrides which allow for more specific configurations. The settings can be specified in a settings file which
 acts as a digital representation of your [style guide](https://en.wikipedia.org/wiki/Style_guide).
 
 \* With the exception of the `wysiwyg` mixin, which applies text formatting to children automatically (only if called).
@@ -35,7 +35,7 @@ npm i microscope-sass --save
 To use Microscope with [webpack](https://webpack.js.org/), install and configure
 [sass-loader](https://webpack.js.org/loaders/sass-loader/).
 
-Webpack style import: 
+Webpack style import:
 
 ```scss
 @import '~microscope-sass/lib/<library>';  // Import single library (recommended).
@@ -48,7 +48,7 @@ _For historic reasons, the Eyeglass import is referenced as "microscope" insead 
 
 Microsope supports [Eyeglass](https://www.npmjs.com/package/eyeglass) in which case it can be referenced as "microscope".
 
-Eygeglass style import: 
+Eygeglass style import:
 
 ```scss
 @import 'microscope/lib/<library>';  // Import single library (recommended).
@@ -57,7 +57,7 @@ Eygeglass style import:
 
 **includePaths**
 
-Add "node_modules/" to the `includePaths` setting of you sass environment. 
+Add "node_modules/" to the `includePaths` setting of you sass environment.
 
 ```js
 ...
@@ -65,7 +65,7 @@ includePaths: ["node_modules/"],
 ...
 ```
 
-includePaths style import: 
+includePaths style import:
 
 ```scss
 @import 'microscope-sass/lib/<library>';  // Import single library (recommended).
@@ -75,11 +75,11 @@ includePaths style import:
 Note: Further documentations assumes a webpack installation and webpack style imports.
 
 ## Usage
- 
+
 **Configuration**
 
 Adjust [settings_sample.scss](https://github.com/maykinmedia/microscope-sass/blob/master/_settings-sample.scss) based on
-your needs, note that all options are optional and unnecessary options can be omitted and removed. 
+your needs, note that all options are optional and unnecessary options can be omitted and removed.
 
 Save the settings file and make sure to include it as the first file in you main `.scss` entrypoint.
 
@@ -160,5 +160,5 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-Copyright © 2020 [Maykin Media](https://www.maykinmedia.nl/)
+Copyright © 2021 [Maykin Media](https://www.maykinmedia.nl/)
 Licensed under the MIT license.

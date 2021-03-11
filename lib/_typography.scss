@@ -1,286 +1,520 @@
+////
+/// Microscope(-sass) typography library.
+/// @group typography
+////
+
+/// @name Import typography library.
+/// @example @import '~microscope-sass/lib/typography';
+
 @import 'color';
 @import 'grid';
 
+
+///
 $typography-color-base: $color-black !default;
+///
 $typography-color-text: $typography-color-base !default;
+///
 $typography-color-link: $color-blue !default;
+///
 $typography-color-link-hover: $typography-color-link !default;
+///
 $typography-color-h: $typography-color-base !default;
+///
 $typography-color-border: $color-border; // Not default, can't be configured, configure $color-border instead.
 
+///
 $typography-default-hover-link: true !default;
+///
 $typography-decoration-link: underline !default;
 
+///
 $typography-font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+///
 $typography-font-family-text: $typography-font-family-base !default;
+///
 $typography-font-family-h: $typography-font-family-base !default;
 
 
+///
 $typography-font-size-text: 1rem !default;
+///
 $typography-font-size-text-mobile: $typography-font-size-text !default;
+///
 $typography-font-size-text-tablet: $typography-font-size-text !default;
+///
 $typography-font-size-text-laptop: $typography-font-size-text !default;
+///
 $typography-font-size-text-desktop: $typography-font-size-text !default;
 
+///
 $typography-font-size-text-big: ($typography-font-size-text * 1.25) !default;
+///
 $typography-font-size-text-big-mobile: $typography-font-size-text-big !default;
+///
 $typography-font-size-text-big-tablet: $typography-font-size-text-big !default;
+///
 $typography-font-size-text-big-laptop: $typography-font-size-text-big !default;
+///
 $typography-font-size-text-big-desktop: $typography-font-size-text-big !default;
 
+///
 $typography-font-size-text-small: ($typography-font-size-text * 0.75) !default;
+///
 $typography-font-size-text-small-mobile: $typography-font-size-text-small !default;
+///
 $typography-font-size-text-small-tablet: $typography-font-size-text-small !default;
+///
 $typography-font-size-text-small-laptop: $typography-font-size-text-small !default;
+///
 $typography-font-size-text-small-desktop: $typography-font-size-text-small !default;
 
+///
 $typography-font-size-h1: ($typography-font-size-text * 2.5) !default;
+///
 $typography-font-size-h1-mobile: $typography-font-size-h1 !default;
+///
 $typography-font-size-h1-tablet: $typography-font-size-h1 !default;
+///
 $typography-font-size-h1-laptop: $typography-font-size-h1 !default;
+///
 $typography-font-size-h1-desktop: $typography-font-size-h1 !default;
 
+///
 $typography-font-size-h2: ($typography-font-size-text * 2) !default;
+///
 $typography-font-size-h2-mobile: $typography-font-size-h2 !default;
+///
 $typography-font-size-h2-tablet: $typography-font-size-h2 !default;
+///
 $typography-font-size-h2-laptop: $typography-font-size-h2 !default;
+///
 $typography-font-size-h2-desktop: $typography-font-size-h2 !default;
 
+///
 $typography-font-size-h3: ($typography-font-size-text * 1.75) !default;
+///
 $typography-font-size-h3-mobile: $typography-font-size-h3 !default;
+///
 $typography-font-size-h3-tablet: $typography-font-size-h3 !default;
+///
 $typography-font-size-h3-laptop: $typography-font-size-h3 !default;
+///
 $typography-font-size-h3-desktop: $typography-font-size-h3 !default;
 
+///
 $typography-font-size-h4: ($typography-font-size-text * 1.5) !default;
+///
 $typography-font-size-h4-mobile: $typography-font-size-h4 !default;
+///
 $typography-font-size-h4-tablet: $typography-font-size-h4 !default;
+///
 $typography-font-size-h4-laptop: $typography-font-size-h4 !default;
+///
 $typography-font-size-h4-desktop: $typography-font-size-h4 !default;
 
+///
 $typography-font-size-h5: ($typography-font-size-text * 1.25) !default;
+///
 $typography-font-size-h5-mobile: $typography-font-size-h5 !default;
+///
 $typography-font-size-h5-tablet: $typography-font-size-h5 !default;
+///
 $typography-font-size-h5-laptop: $typography-font-size-h5 !default;
+///
 $typography-font-size-h5-desktop: $typography-font-size-h5 !default;
 
+///
 $typography-font-size-h6: $typography-font-size-text !default;
+///
 $typography-font-size-h6-mobile: $typography-font-size-h6 !default;
+///
 $typography-font-size-h6-tablet: $typography-font-size-h6 !default;
+///
 $typography-font-size-h6-laptop: $typography-font-size-h6 !default;
+///
 $typography-font-size-h6-desktop: $typography-font-size-h6 !default;
 
+///
 $typography-font-weight-text: normal !default;
+///
 $typography-font-weight-h: bold !default;
 
+///
 $typography-font-weight-h1: $typography-font-weight-h !default;
+///
 $typography-font-weight-h2: $typography-font-weight-h !default;
+///
 $typography-font-weight-h3: $typography-font-weight-h !default;
+///
 $typography-font-weight-h4: $typography-font-weight-h !default;
+///
 $typography-font-weight-h5: $typography-font-weight-h !default;
+///
 $typography-font-weight-h6: $typography-font-weight-h !default;
 
 
+///
 $typography-line-height-base: 1.5 !default;
 
+///
 $typography-line-height-text: $typography-line-height-base !default;
+///
 $typography-line-height-text-mobile: $typography-line-height-text !default;
+///
 $typography-line-height-text-tablet: $typography-line-height-text !default;
+///
 $typography-line-height-text-laptop: $typography-line-height-text !default;
+///
 $typography-line-height-text-desktop: $typography-line-height-text !default;
 
+///
 $typography-line-height-text-big: $typography-line-height-base !default;
+///
 $typography-line-height-text-big-mobile: $typography-line-height-text-big !default;
+///
 $typography-line-height-text-big-tablet: $typography-line-height-text-big !default;
+///
 $typography-line-height-text-big-laptop: $typography-line-height-text-big !default;
+///
 $typography-line-height-text-big-desktop: $typography-line-height-text-big !default;
 
+///
 $typography-line-height-text-small: $typography-line-height-base !default;
+///
 $typography-line-height-text-small-mobile: $typography-line-height-text-small !default;
+///
 $typography-line-height-text-small-tablet: $typography-line-height-text-small !default;
+///
 $typography-line-height-text-small-laptop: $typography-line-height-text-small !default;
+///
 $typography-line-height-text-small-desktop: $typography-line-height-text-small !default;
 
+///
 $typography-line-height-h: 1.2 !default;
 
+///
 $typography-line-height-h1: $typography-line-height-h !default;
+///
 $typography-line-height-h1-mobile: $typography-line-height-h1 !default;
+///
 $typography-line-height-h1-tablet: $typography-line-height-h1 !default;
+///
 $typography-line-height-h1-laptop: $typography-line-height-h1 !default;
+///
 $typography-line-height-h1-desktop: $typography-line-height-h1 !default;
 
+///
 $typography-line-height-h2: $typography-line-height-h !default;
+///
 $typography-line-height-h2-mobile: $typography-line-height-h2 !default;
+///
 $typography-line-height-h2-tablet: $typography-line-height-h2 !default;
+///
 $typography-line-height-h2-laptop: $typography-line-height-h2 !default;
+///
 $typography-line-height-h2-desktop: $typography-line-height-h2 !default;
 
+///
 $typography-line-height-h3: $typography-line-height-h !default;
+///
 $typography-line-height-h3-mobile: $typography-line-height-h3 !default;
+///
 $typography-line-height-h3-tablet: $typography-line-height-h3 !default;
+///
 $typography-line-height-h3-laptop: $typography-line-height-h3 !default;
+///
 $typography-line-height-h3-desktop: $typography-line-height-h3 !default;
 
+///
 $typography-line-height-h4: $typography-line-height-h !default;
+///
 $typography-line-height-h4-mobile: $typography-line-height-h4 !default;
+///
 $typography-line-height-h4-tablet: $typography-line-height-h4 !default;
+///
 $typography-line-height-h4-laptop: $typography-line-height-h4 !default;
+///
 $typography-line-height-h4-desktop: $typography-line-height-h4 !default;
 
+///
 $typography-line-height-h5: $typography-line-height-h !default;
+///
 $typography-line-height-h5-mobile: $typography-line-height-h5 !default;
+///
 $typography-line-height-h5-tablet: $typography-line-height-h5 !default;
+///
 $typography-line-height-h5-laptop: $typography-line-height-h5 !default;
+///
 $typography-line-height-h5-desktop: $typography-line-height-h5 !default;
 
+///
 $typography-line-height-h6: $typography-line-height-h !default;
+///
 $typography-line-height-h6-mobile: $typography-line-height-h6 !default;
+///
 $typography-line-height-h6-tablet: $typography-line-height-h6 !default;
+///
 $typography-line-height-h6-laptop: $typography-line-height-h6 !default;
+///
 $typography-line-height-h6-desktop: $typography-line-height-h6 !default;
 
 
+///
 $typography-letter-spacing-base: normal;
 
+///
 $typography-letter-spacing-text: $typography-letter-spacing-base !default;
+///
 $typography-letter-spacing-text-mobile: $typography-letter-spacing-text !default;
+///
 $typography-letter-spacing-text-tablet: $typography-letter-spacing-text !default;
+///
 $typography-letter-spacing-text-laptop: $typography-letter-spacing-text !default;
+///
 $typography-letter-spacing-text-desktop: $typography-letter-spacing-text !default;
 
+///
 $typography-letter-spacing-text-big: $typography-letter-spacing-base !default;
+///
 $typography-letter-spacing-text-big-mobile: $typography-letter-spacing-text-big !default;
+///
 $typography-letter-spacing-text-big-tablet: $typography-letter-spacing-text-big !default;
+///
 $typography-letter-spacing-text-big-laptop: $typography-letter-spacing-text-big !default;
+///
 $typography-letter-spacing-text-big-desktop: $typography-letter-spacing-text-big !default;
 
+///
 $typography-letter-spacing-text-small: $typography-letter-spacing-base !default;
+///
 $typography-letter-spacing-text-small-mobile: $typography-letter-spacing-text-small !default;
+///
 $typography-letter-spacing-text-small-tablet: $typography-letter-spacing-text-small !default;
+///
 $typography-letter-spacing-text-small-laptop: $typography-letter-spacing-text-small !default;
+///
 $typography-letter-spacing-text-small-desktop: $typography-letter-spacing-text-small !default;
 
+///
 $typography-letter-spacing-h: normal;
 
+///
 $typography-letter-spacing-h1: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h1-mobile: $typography-letter-spacing-h1 !default;
+///
 $typography-letter-spacing-h1-tablet: $typography-letter-spacing-h1 !default;
+///
 $typography-letter-spacing-h1-laptop: $typography-letter-spacing-h1 !default;
+///
 $typography-letter-spacing-h1-desktop: $typography-letter-spacing-h1 !default;
 
+///
 $typography-letter-spacing-h2: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h2-mobile: $typography-letter-spacing-h2 !default;
+///
 $typography-letter-spacing-h2-tablet: $typography-letter-spacing-h2 !default;
+///
 $typography-letter-spacing-h2-laptop: $typography-letter-spacing-h2 !default;
+///
 $typography-letter-spacing-h2-desktop: $typography-letter-spacing-h2 !default;
 
+///
 $typography-letter-spacing-h3: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h3-mobile: $typography-letter-spacing-h3 !default;
+///
 $typography-letter-spacing-h3-tablet: $typography-letter-spacing-h3 !default;
+///
 $typography-letter-spacing-h3-laptop: $typography-letter-spacing-h3 !default;
+///
 $typography-letter-spacing-h3-desktop: $typography-letter-spacing-h3 !default;
 
+///
 $typography-letter-spacing-h4: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h4-mobile: $typography-letter-spacing-h4 !default;
+///
 $typography-letter-spacing-h4-tablet: $typography-letter-spacing-h4 !default;
+///
 $typography-letter-spacing-h4-laptop: $typography-letter-spacing-h4 !default;
+///
 $typography-letter-spacing-h4-desktop: $typography-letter-spacing-h4 !default;
 
+///
 $typography-letter-spacing-h5: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h5-mobile: $typography-letter-spacing-h5 !default;
+///
 $typography-letter-spacing-h5-tablet: $typography-letter-spacing-h5 !default;
+///
 $typography-letter-spacing-h5-laptop: $typography-letter-spacing-h5 !default;
+///
 $typography-letter-spacing-h5-desktop: $typography-letter-spacing-h5 !default;
 
+///
 $typography-letter-spacing-h6: $typography-letter-spacing-h !default;
+///
 $typography-letter-spacing-h6-mobile: $typography-letter-spacing-h6 !default;
+///
 $typography-letter-spacing-h6-tablet: $typography-letter-spacing-h6 !default;
+///
 $typography-letter-spacing-h6-laptop: $typography-letter-spacing-h6 !default;
+///
 $typography-letter-spacing-h6-desktop: $typography-letter-spacing-h6 !default;
 
 
+///
 $typography-margin-base: 1rem !default;
 
+///
 $typography-margin-text: $typography-margin-base !default;
+///
 $typography-margin-text-mobile: $typography-margin-text !default;
+///
 $typography-margin-text-tablet: $typography-margin-text !default;
+///
 $typography-margin-text-laptop: $typography-margin-text !default;
+///
 $typography-margin-text-desktop: $typography-margin-text !default;
 
+///
 $typography-margin-hr: $typography-margin-base !default;
+///
 $typography-margin-hr-mobile: $typography-margin-hr !default;
+///
 $typography-margin-hr-tablet: $typography-margin-hr !default;
+///
 $typography-margin-hr-laptop: $typography-margin-hr !default;
+///
 $typography-margin-hr-desktop: $typography-margin-hr !default;
 
+///
 $typography-margin-list: $typography-margin-base !default;
+///
 $typography-margin-list-mobile: $typography-margin-list !default;
+///
 $typography-margin-list-tablet: $typography-margin-list !default;
+///
 $typography-margin-list-laptop: $typography-margin-list !default;
+///
 $typography-margin-list-desktop: $typography-margin-list !default;
 
+///
 $typography-margin-table: $typography-margin-base 0 !default;
+///
 $typography-margin-table-mobile: $typography-margin-table !default;
+///
 $typography-margin-table-tablet: $typography-margin-table !default;
+///
 $typography-margin-table-laptop: $typography-margin-table !default;
+///
 $typography-margin-table-desktop: $typography-margin-table !default;
 
+///
 $typography-margin-h: 0.5rem !default;
 
+///
 $typography-margin-h1: $typography-margin-h !default;
+///
 $typography-margin-h1-mobile: $typography-margin-h1 !default;
+///
 $typography-margin-h1-tablet: $typography-margin-h1 !default;
+///
 $typography-margin-h1-laptop: $typography-margin-h1 !default;
+///
 $typography-margin-h1-desktop: $typography-margin-h1 !default;
 
+///
 $typography-margin-h2: $typography-margin-h !default;
+///
 $typography-margin-h2-mobile: $typography-margin-h2 !default;
+///
 $typography-margin-h2-tablet: $typography-margin-h2 !default;
+///
 $typography-margin-h2-laptop: $typography-margin-h2 !default;
+///
 $typography-margin-h2-desktop: $typography-margin-h2 !default;
 
+///
 $typography-margin-h3: $typography-margin-h !default;
+///
 $typography-margin-h3-mobile: $typography-margin-h3 !default;
+///
 $typography-margin-h3-tablet: $typography-margin-h3 !default;
+///
 $typography-margin-h3-laptop: $typography-margin-h3 !default;
+///
 $typography-margin-h3-desktop: $typography-margin-h3 !default;
 
+///
 $typography-margin-h4: $typography-margin-h !default;
+///
 $typography-margin-h4-mobile: $typography-margin-h4 !default;
+///
 $typography-margin-h4-tablet: $typography-margin-h4 !default;
+///
 $typography-margin-h4-laptop: $typography-margin-h4 !default;
+///
 $typography-margin-h4-desktop: $typography-margin-h4 !default;
 
+///
 $typography-margin-h5: $typography-margin-h !default;
+///
 $typography-margin-h5-mobile: $typography-margin-h5 !default;
+///
 $typography-margin-h5-tablet: $typography-margin-h5 !default;
+///
 $typography-margin-h5-laptop: $typography-margin-h5 !default;
+///
 $typography-margin-h5-desktop: $typography-margin-h5 !default;
 
+///
 $typography-margin-h6: $typography-margin-h !default;
+///
 $typography-margin-h6-mobile: $typography-margin-h6 !default;
+///
 $typography-margin-h6-tablet: $typography-margin-h6 !default;
+///
 $typography-margin-h6-laptop: $typography-margin-h6 !default;
+///
 $typography-margin-h6-desktop: $typography-margin-h6 !default;
 
 
+///
 $typography-margin-property-base: margin-bottom !default;
+///
 $typography-margin-property-text: $typography-margin-property-base !default;
+///
 $typography-margin-property-h: $typography-margin-property-base !default;
+///
 $typography-margin-property-hr: $typography-margin-property-base !default;
+///
 $typography-margin-property-list: $typography-margin-property-base !default;
+///
 $typography-margin-property-table: margin !default;
 
+///
 $typography-margin-property-h1: $typography-margin-property-h !default;
+///
 $typography-margin-property-h2: $typography-margin-property-h !default;
+///
 $typography-margin-property-h3: $typography-margin-property-h !default;
+///
 $typography-margin-property-h4: $typography-margin-property-h !default;
+///
 $typography-margin-property-h5: $typography-margin-property-h !default;
+///
 $typography-margin-property-h6: $typography-margin-property-h !default;
 
+///
 $typography-padding-table: $grid-margin-1 0 !default;
 
+///
 $typography-size-border: 1px !default;
+///
 $typography-style-border: solid !default;
 
 
@@ -427,7 +661,7 @@ $typography-style-border: solid !default;
 
 /// Applies h4 styling to element.
 ///
-/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param {string | boolean | number} $margin [false] - Can be one of: 'auto', true, false, or a value.
 /// @param {list | string} $margin-properties [$typography-margin-property-h4] - One or more properties to set for
 /// margin (if set).
 /// @see {mixin} margin for possible values for $margin.
@@ -443,7 +677,7 @@ $typography-style-border: solid !default;
 
 /// Applies h5 styling to element.
 ///
-/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param {string | boolean | number} $margin [false] - Can be one of: 'auto', true, false, or a value.
 /// @param {list | string} $margin-properties [$typography-margin-property-h5] - One or more properties to set for
 /// margin (if set).
 /// @see {mixin} margin for possible values for $margin.
@@ -459,7 +693,7 @@ $typography-style-border: solid !default;
 
 /// Applies h6 styling to element.
 ///
-/// @param $margin [false] - Value for margin mixin, can be a value or a keyword.
+/// @param {string | boolean | number} $margin [false] - Can be one of: 'auto', true, false, or a value.
 /// @param {list | string} $margin-properties [$typography-margin-property-h6] - One or more properties to set for
 /// margin (if set).
 /// @see {mixin} margin for possible values for $margin.
@@ -565,8 +799,8 @@ $typography-style-border: solid !default;
 /// structure and it's representation. In many cases, a better idea would be to use a class selector to apply styling
 /// (which acts independent of the tag name).
 ///
-/// @param $margin [auto] - Value for margin mixin, can be a value or a keyword.
-/// @param $not-me [null] - An optional selector to exclude from automated styling (using a :not pseudo-class).
+/// @param {string | boolean | number} $margin ['auto'] - Can be one of: 'auto', true, false, or a value.
+/// @param {string | null} $not-me [null] - An optional selector to exclude from automated styling (using a :not pseudo-class).
 /// @see {mixin} margin for possible values for $margin.
 @mixin wysiwyg($margin: auto, $not-me: null) {
   @if $not-me {
