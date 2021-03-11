@@ -1,6 +1,7 @@
 # :microscope: Microscope
 
 > Sass microframework for building scoped user interfaces.
+- [Documentation](https://maykinmedia.github.io/microscope-sass/) on github pages.
 
 Microscope is a microframework with a light footprint (0kb by default) which only applies styling to explicitly selected
 elements* (by you) based on highly configurable defaults.
@@ -20,7 +21,8 @@ Microscope contains a large amount of [settings](https://github.com/maykinmedia/
 specific overrides which allow for more specific configurations. The settings can be specified in a settings file which
 acts as a digital representation of your [style guide](https://en.wikipedia.org/wiki/Style_guide).
 
-\* With the exception of the `wysiwyg` mixin, which applies text formatting to children automatically (only if called).
+\* With the exception of the `wysiwyg` and `table` mixins, which applies formatting to children automatically (only if
+called).
 
 ## Install
 
@@ -89,17 +91,17 @@ Save the settings file and make sure to include it as the first file in you main
 
 **Libraries**
 
-Microscope exposes the following libraries, please refer to their source code and docstrings (for now) to see what
+Microscope exposes the following libraries, please refer to their [documentation](https://maykinmedia.github.io/microscope-sass/)
 functions, mixins and variables are exposed.
 
-- [animation](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_animation.scss)
-- [browser](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_browser.scss)
-- [color](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_color.scss)
-- [grid](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_grid.scss)
-- [responsive](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_responsive.scss)
-- [transform](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_transform.scss)
-- [typography](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_typography.scss)
-- [util](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_util.scss)
+- [animation](https://maykinmedia.github.io/microscope-sass/#animation)
+- [browser](https://maykinmedia.github.io/microscope-sass/#browser)
+- [color](https://maykinmedia.github.io/microscope-sass/#color)
+- [grid](https://maykinmedia.github.io/microscope-sass/#grid)
+- [responsive](https://maykinmedia.github.io/microscope-sass/#responsive)
+- [transform](https://maykinmedia.github.io/microscope-sass/#transform)
+- [typography](https://maykinmedia.github.io/microscope-sass/#typography)
+- [util](https://maykinmedia.github.io/microscope-sass/#util)
 
 **Importing a single library (prefered)**
 

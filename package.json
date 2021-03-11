@@ -3,9 +3,11 @@
   "version": "0.3.2",
   "description": "Sass microframework for building scoped user interfaces.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run generatedocs && npm run generatesettings",
     "generatedocs": "./node_modules/.bin/sassdoc lib",
-    "generatesettings": "./bin/generate_settings.sh"
+    "generatesettings": "./bin/generate_settings.sh",
+    "publishdocs": "npm run generatedocs && git subtree push --prefix sassdoc origin gh-pages",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "eyeglass-module",
