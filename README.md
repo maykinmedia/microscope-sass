@@ -1,6 +1,7 @@
 # :microscope: Microscope
 
 > Sass microframework for building scoped user interfaces.
+- [Changelog](https://github.com/maykinmedia/microscope-sass/blob/master/CHANGELOG.md).
 - [Documentation](https://maykinmedia.github.io/microscope-sass/) on github pages.
 
 Microscope is a microframework with a light footprint (0kb by default) which only applies styling to explicitly selected

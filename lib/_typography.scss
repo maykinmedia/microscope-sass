@@ -587,10 +587,18 @@ $typography-style-border: solid !default;
 }
 
 
+// Applies base heading styling.
+@mixin text {
+  color: $typography-color-text;
+  font-family: $typography-font-family-text;
+  margin: 0;
+}
+
+
 /// Adds a border
 ///
 /// @param {string} $position ['bottom] - Can be one of: 'all', 'top', 'right', bottom' or 'left'.
-/// @param {string} $color [$typography-color-border] - Color of the border.
+/// @param {color} $color [$typography-color-border] - Color of the border.
 /// @param {string} $size [$typography-size-border] - Size of the border.
 /// @param {string} $style [$typography-style-border] - Style of the border.
 @mixin border($position: 'bottom', $color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
@@ -602,6 +610,17 @@ $typography-style-border: solid !default;
     border-#{$position}: $size $style $color;
   }
 }
+
+
+/// Adds outline to all elements (* selector on root).
+///
+/// @param {color} $color [$typography-color-border] - Color of the outline.
+/// @param {number} $size [$typography-size-border] - Size of the outline.
+/// @param {string} $style [$typography-style-border] - Style of the outline.
+@mixin outline($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
+  outline: $size $style $color;
+}
+
 
 // Adds an ellipsis (…) when text overflows.
 @mixin ellipsis {
