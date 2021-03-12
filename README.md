@@ -163,5 +163,5 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-Copyright © 2021 [Maykin Media](https://www.maykinmedia.nl/)
+Copyright © 2019 [Maykin Media](https://www.maykinmedia.nl/)
 Licensed under the MIT license.
