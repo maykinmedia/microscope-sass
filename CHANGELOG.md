@@ -21,4 +21,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Util/transform: `$util-shadow-default-offset-y` variable is renamed to `$transform-shadow-default-offset-y`.
 - Util/transform: `$util-shadow-default-blur` variable is renamed to `$transform-shadow-default-blur`.
 - Util/transform: `$util-shadow-default-spread` variable is renamed to `$transform-shadow-default-spread`.
-- Util/typography: `ouline` mixin is moved to typography library.
+- Util/typography: `outline` mixin is moved to typography library.
