@@ -103,7 +103,7 @@ functions, mixins and variables are exposed.
 - [typography](https://maykinmedia.github.io/microscope-sass/#typography)
 - [util](https://maykinmedia.github.io/microscope-sass/#util)
 
-**Importing a single library (prefered)**
+**Importing a single library (preferred)**
 
 In any of your (nested) .scss files, import the libraries you need. The libraries will use your
 custom settings if set.
