@@ -62,6 +62,12 @@ $grid-margin-8: 80px !default;
 $grid-margin-9: 90px !default;
 $grid-margin-10: 100px !default;
 
+$transform-shadow-default-color: rgba($color-black, 0.15) !default;
+$transform-shadow-default-offset-x: 0 !default;
+$transform-shadow-default-offset-y: 0.5rem !default;
+$transform-shadow-default-blur: 1rem !default;
+$transform-shadow-default-spread: 0 !default;
+
 $typography-color-base: $color-black !default;
 $typography-color-text: $typography-color-base !default;
 $typography-color-link: $color-blue !default;
@@ -286,10 +292,4 @@ $typography-margin-property-h6: $typography-margin-property-h !default;
 $typography-padding-table: $grid-margin-1 0 !default;
 $typography-size-border: 1px !default;
 $typography-style-border: solid !default;
-
-$util-shadow-default-color: rgba($color-black, 0.15) !default;
-$util-shadow-default-offset-x: 0 !default;
-$util-shadow-default-offset-y: 0.5rem !default;
-$util-shadow-default-blur: 1rem !default;
-$util-shadow-default-spread: 0 !default;
 
