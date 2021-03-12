@@ -1,8 +1,12 @@
 {
   "name": "microscope-sass",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "Sass microframework for building scoped user interfaces.",
   "scripts": {
+    "build": "npm run generatedocs && npm run generatesettings",
+    "generatedocs": "./node_modules/.bin/sassdoc lib",
+    "generatesettings": "./bin/generate_settings.sh",
+    "publishdocs": "npm run generatedocs && git add sassdoc && git commit -m ':memo: - npm run publishdocs.' && git subtree push --prefix sassdoc origin gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,7 +24,6 @@
   },
   "main": "eyeglass-exports.js",
   "style": "lib/_microscope.scss",
-
   "directories": {
     "lib": "lib"
   },
@@ -31,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/maykinmedia/microscope-sass/issues"
   },
-  "homepage": "https://github.com/maykinmedia/microscope-sass#readme"
+  "homepage": "https://github.com/maykinmedia/microscope-sass#readme",
+  "devDependencies": {
+    "sassdoc": "^2.7.3"
+  }
 }

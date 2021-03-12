@@ -1,64 +1,121 @@
+////
+/// Microscope(-sass) color library.
+/// @group color
+////
+
+/// @name Import color library.
+/// @example @import '~microscope-sass/lib/color';
+
+@import 'util';
+
+
+///
 $color-black: black !default;
+///
 $color-white: white !default;
+///
 $color-gray: silver !default;
+///
 $color-gray-darker: #47535B !default;
 
+///
 $color-blue: blue !default;
+///
 $color-green: green !default;
+///
 $color-red: red !default;
+///
 $color-orange: orange !default;
+///
 $color-yellow: yellow !default;
 
+///
 $color-primary: $color-blue !default;
+///
 $color-secondary: $color-gray !default;
 
+///
 $color-background: $color-white !default;
+///
 $color-border: $color-gray !default;
 
+///
 $color-danger: $color-red !default;
-$color-info: $color-blue!default;
-$color-success: $color-green!default;
-$color-warning: $color-orange!default;
+///
+$color-info: $color-blue !default;
+///
+$color-success: $color-green !default;
+///
+$color-warning: $color-orange !default;
 
 
-@mixin color-primary($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-primary#{$important};
-}
-
-@mixin color-secondary($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-secondary#{$important};
-}
-
-
-@mixin color-background($property: 'background-color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-background#{$important};
-}
-
-@mixin color-border($property: 'border-color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-border#{$important};
+/// Sets the primary color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-primary($properties: 'color', $force: false) {
+  @include properties($properties, $color-primary, $force);
 }
 
 
-@mixin color-danger($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-danger#{$important};
+/// Sets the secondary color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-secondary($properties: 'color', $force: false) {
+  @include properties($properties, $color-secondary, $force);
 }
 
-@mixin color-info($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-info#{$important};
+
+/// Sets the background color.
+///
+/// @param {list | string} $properties ['background-color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-background($properties: 'background-color', $force: false) {
+  @include properties($properties, $color-background, $force);
 }
 
-@mixin color-success($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-success#{$important};
+
+/// Sets the border color.
+///
+/// @param {list | string} $properties ['border-color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-border($properties: 'border-color', $force: false) {
+  @include properties($properties, $color-border, $force);
 }
 
-@mixin color-warning($property: 'color', $force: false) {
-  $important: if($force, !important, null);
-  #{$property}: $color-warning#{$important};
+
+/// Sets the danger color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-danger($properties: 'color', $force: false) {
+  @include properties($properties, $color-danger, $force);
+}
+
+
+/// Sets the info color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-info($properties: 'color', $force: false) {
+  @include properties($properties, $color-info, $force);
+}
+
+
+/// Sets the success color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-success($properties: 'color', $force: false) {
+  @include properties($properties, $color-success, $force);
+}
+
+
+/// Sets the warning color.
+///
+/// @param {list | string} $properties ['color'] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin color-warning($properties: 'color', $force: false) {
+  @include properties($properties, $color-warning, $force);
 }

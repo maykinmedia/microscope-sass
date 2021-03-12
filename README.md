@@ -1,6 +1,8 @@
 # :microscope: Microscope
 
 > Sass microframework for building scoped user interfaces.
+- [Changelog](https://github.com/maykinmedia/microscope-sass/blob/master/CHANGELOG.md).
+- [Documentation](https://maykinmedia.github.io/microscope-sass/) on github pages.
 
 Microscope is a microframework with a light footprint (0kb by default) which only applies styling to explicitly selected
 elements* (by you) based on highly configurable defaults.
@@ -16,11 +18,12 @@ Because no default styling is present, Microscope works well in combination with
 **Highly configurable**
 
 Microscope contains a large amount of [settings](https://github.com/maykinmedia/microscope-sass/blob/master/_settings-sample.scss)
-(with sane defaults) which configure the created CSS code. Many settings have variations and/or optional breakpoint 
-specific overrides which allow for more specific configurations. The settings can be specified in a settings file which 
+(with sane defaults) which configure the created CSS code. Many settings have variations and/or optional breakpoint
+specific overrides which allow for more specific configurations. The settings can be specified in a settings file which
 acts as a digital representation of your [style guide](https://en.wikipedia.org/wiki/Style_guide).
 
-\* With the exception of the `wysiwyg` mixin, which applies text formatting to children automatically (only if called).
+\* With the exception of the `wysiwyg` and `table` mixins, which applies formatting to children automatically (only if
+called).
 
 ## Install
 
@@ -35,7 +38,7 @@ npm i microscope-sass --save
 To use Microscope with [webpack](https://webpack.js.org/), install and configure
 [sass-loader](https://webpack.js.org/loaders/sass-loader/).
 
-Webpack style import: 
+Webpack style import:
 
 ```scss
 @import '~microscope-sass/lib/<library>';  // Import single library (recommended).
@@ -48,7 +51,7 @@ _For historic reasons, the Eyeglass import is referenced as "microscope" insead 
 
 Microsope supports [Eyeglass](https://www.npmjs.com/package/eyeglass) in which case it can be referenced as "microscope".
 
-Eygeglass style import: 
+Eygeglass style import:
 
 ```scss
 @import 'microscope/lib/<library>';  // Import single library (recommended).
@@ -57,7 +60,7 @@ Eygeglass style import:
 
 **includePaths**
 
-Add "node_modules/" to the `includePaths` setting of you sass environment. 
+Add "node_modules/" to the `includePaths` setting of you sass environment.
 
 ```js
 ...
@@ -65,7 +68,7 @@ includePaths: ["node_modules/"],
 ...
 ```
 
-includePaths style import: 
+includePaths style import:
 
 ```scss
 @import 'microscope-sass/lib/<library>';  // Import single library (recommended).
@@ -75,11 +78,11 @@ includePaths style import:
 Note: Further documentations assumes a webpack installation and webpack style imports.
 
 ## Usage
- 
+
 **Configuration**
 
 Adjust [settings_sample.scss](https://github.com/maykinmedia/microscope-sass/blob/master/_settings-sample.scss) based on
-your needs, note that all options are optional and unnecessary options can be omitted and removed. 
+your needs, note that all options are optional and unnecessary options can be omitted and removed.
 
 Save the settings file and make sure to include it as the first file in you main `.scss` entrypoint.
 
@@ -89,19 +92,19 @@ Save the settings file and make sure to include it as the first file in you main
 
 **Libraries**
 
-Microscope exposes the following libraries, please refer to their source code and docstrings (for now) to see what
+Microscope exposes the following libraries, please refer to their [documentation](https://maykinmedia.github.io/microscope-sass/)
 functions, mixins and variables are exposed.
 
-- [animation](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_animation.scss)
-- [browser](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_browser.scss)
-- [color](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_color.scss)
-- [grid](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_grid.scss)
-- [responsive](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_responsive.scss)
-- [transform](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_transform.scss)
-- [typography](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_typography.scss)
-- [util](https://github.com/maykinmedia/microscope-sass/blob/master/lib/_util.scss)
+- [animation](https://maykinmedia.github.io/microscope-sass/#animation)
+- [browser](https://maykinmedia.github.io/microscope-sass/#browser)
+- [color](https://maykinmedia.github.io/microscope-sass/#color)
+- [grid](https://maykinmedia.github.io/microscope-sass/#grid)
+- [responsive](https://maykinmedia.github.io/microscope-sass/#responsive)
+- [transform](https://maykinmedia.github.io/microscope-sass/#transform)
+- [typography](https://maykinmedia.github.io/microscope-sass/#typography)
+- [util](https://maykinmedia.github.io/microscope-sass/#util)
 
-**Importing a single library (prefered)**
+**Importing a single library (preferred)**
 
 In any of your (nested) .scss files, import the libraries you need. The libraries will use your
 custom settings if set.
@@ -160,5 +163,5 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-Copyright © 2020 [Maykin Media](https://www.maykinmedia.nl/)
+Copyright © 2019 [Maykin Media](https://www.maykinmedia.nl/)
 Licensed under the MIT license.

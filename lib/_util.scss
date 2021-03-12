@@ -1,13 +1,51 @@
-@import 'color';
-@import 'typography';
+////
+/// Microscope(-sass) util library.
+/// @group util
+////
 
-$util-shadow-default-color: rgba($color-black, 0.15) !default;
-$util-shadow-default-offset-x: 0 !default;
-$util-shadow-default-offset-y: 0.5rem !default;
-$util-shadow-default-blur: 1rem !default;
-$util-shadow-default-spread: 0 !default;
+/// @name Import util library.
+/// @example @import '~microscope-sass/lib/util';
 
 
+/// Adds outline to all elements (* selector on root).
+///
+/// @param {color} $color [#000] - Color of the outline.
+/// @param {number} $size [1px] - Size of the outline.
+/// @param {string} $style ['solid'] - Style of the outline.
+/// @see {mixin} outline.
+@mixin inspect($color: #000, $size: 1px, $style: 'solid') {
+  @at-root {
+    * {
+      outline: $size $style $color;
+    }
+  }
+}
+
+
+/// Applies `$value` to all `$properties`.
+///
+/// @param {list | string} $properties - One or more properties to set.
+/// @param {*} $value - Value to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin properties($properties, $value, $force: false) {
+  $important: if($force, !important, null);
+
+  @if type-of($properties) != list {
+    $properties: ($properties);
+  }
+
+  @each $property in $properties {
+    #{$property}: $value#{$important};
+  }
+}
+
+
+/// Replace `$search` with `$replace` in `$string`.
+/// @author Hugo Giraudel.
+/// @param {string} $string - Initial string.
+/// @param {string} $search - Substring to replace.
+/// @param {string} $replace ('') - New value.
+/// @return {string} - Updated string.
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
@@ -19,26 +57,14 @@ $util-shadow-default-spread: 0 !default;
 }
 
 
-@mixin aspect-ratio($width, $height, $property: padding-top, $clear-height: auto) {
-  #{$property}: percentage($height / $width);
-
-  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
-    height: 0;
+/// Remove the unit of a length.
+/// @author Hugo Giraudel.
+/// @param {numer} $number - Number to remove unit from.
+/// @return {number} - Unitless number.
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
   }
-}
 
-@mixin shadow($color: $util-shadow-default-color, $offset-x: $util-shadow-default-offset-x, $offset-y: $util-shadow-default-offset-y, $blur: $util-shadow-default-blur, $spread: $util-shadow-default-spread) {
-  box-shadow: $offset-x $offset-y $blur $spread $color;
-}
-
-@mixin inspect {
-  @at-root {
-    * {
-      @include outline;
-    }
-  }
-}
-
-@mixin outline($color: $typography-color-border, $size: $typography-size-border, $style: $typography-style-border) {
-    outline: $size $style $color;
+  @return $number;
 }

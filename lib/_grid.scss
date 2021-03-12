@@ -1,41 +1,91 @@
-@import 'responsive';
+////
+/// Microscope(-sass) grid library.
+/// @group grid
+////
 
+/// @name Import grid library.
+/// @example @import '~microscope-sass/lib/grid';
+
+@import 'responsive';
+@import 'util';
+
+
+///
 $grid-columns-mobile: 4 !default;
+///
 $grid-columns-tablet: 9 !default;
+///
 $grid-columns-laptop: 12 !default;
+///
 $grid-columns-desktop: 12 !default;
 
+///
 $grid-gutter-base: 30px !default;
+///
 $grid-gutter-mobile: $grid-gutter-base !default;
+///
 $grid-gutter-tablet: $grid-gutter-base !default;
+///
 $grid-gutter-laptop: $grid-gutter-base !default;
+///
 $grid-gutter-desktop: $grid-gutter-base !default;
+///
 $grid-row-height: 40px !default;
 
+///
 $grid-container-margin-base: $grid-gutter-base / 2 !default;
+///
 $grid-container-padding-base: 0px !default;
 
+///
 $grid-container-margin: $grid-container-margin-base !default;
+///
 $grid-container-margin-small: $grid-container-margin-base !default;
+///
 $grid-container-margin-big: $grid-container-margin-base !default;
 
+///
 $grid-container-padding: $grid-container-padding-base !default;
-$grid-container-padding-small: $grid-container-padding-base !default$grid-container-padding-big: $grid-container-padding-base !default$grid-container-size: $breakpoint-desktop - 2 * $grid-container-margin !default;
+///
+$grid-container-padding-small: $grid-container-padding-base !default;
+///
+$grid-container-padding-big: $grid-container-padding-base !default
+///
+$grid-container-size: $breakpoint-desktop - 2 * $grid-container-margin !default;
+///
 $grid-container-size-small: 800px !default;
+///
 $grid-container-size-big: 1400px !default;
 
+///
 $grid-margin-0: 5px !default;
+///
 $grid-margin-1: 10px !default;
+///
 $grid-margin-2: 20px !default;
+///
 $grid-margin-3: 30px !default;
+///
 $grid-margin-4: 40px !default;
+///
 $grid-margin-5: 50px !default;
+///
 $grid-margin-6: 60px !default;
+///
 $grid-margin-7: 70px !default;
+///
 $grid-margin-8: 80px !default;
+///
 $grid-margin-9: 90px !default;
+///
 $grid-margin-10: 100px !default;
 
+
+/// Defines a (float/flexbox) container
+/// Note: recommended value for `$clearfix` is 'flex'.
+///
+/// @param {boolean | string} $clearfix [true] - If boolean: whether to use a clearfix, if 'flex': use flexbox.
+/// @param {boolean} $padding [true] - Whether to use container padding.
 @mixin container($clearfix: true, $padding: true) {
   $max-width-mobile: calc(100% - #{2 * $grid-container-margin});
   @include responsive(max-width, $max-width-mobile, $max-width-mobile, $max-width-mobile, $grid-container-size);
@@ -48,13 +98,19 @@ $grid-margin-10: 100px !default;
     @include container-padding;
   }
 
-  @if $clearfix == true {
+  @if $clearfix == true {  // Clearfix.
     @include clearfix;
-  } @else if $clearfix == flex {
+  } @else if $clearfix == 'flex' {  // Flex.
     display: flex;
   }
 }
 
+
+/// Can be used in conjunction with container to increase the container's size configuration to "big".
+/// Should be applied after container mixin.
+///
+/// @param {boolean} $padding [true] - Whether to use (big) container padding.
+/// @todo Create standalone alternative.
 @mixin container--big($padding: true) {
   width: calc(100% - #{2 * $grid-container-margin-big});
   max-width: $grid-container-size-big;
@@ -63,100 +119,30 @@ $grid-margin-10: 100px !default;
     @include container-padding(big);
   }
 
-  @include desktop { // Override 'normal' container
+  @include desktop { // Override 'normal' container.
     max-width: $grid-container-size-big;
   }
 }
 
-@mixin container--small() {
-  @include container-padding(small);
-  width: calc(100% - #{2 * $grid-container-margin-small});
 
+/// Can be used in conjunction with container to decrease the container's size configuration to "small".
+/// Should be applied after container mixin.
+///
+/// @param {boolean} $padding [true] - Whether to use (small) container padding.
+/// @todo Create standalone alternative.
+@mixin container--small() {
+  @include container-padding('small');
+  width: calc(100% - #{2 * $grid-container-margin-small});
   max-width: $grid-container-size-small;
+
   @include desktop { // Override 'normal' container
     max-width: $grid-container-size-small;
   }
 }
 
-@mixin container-margin($size: normal, $properties: ('margin-left', 'margin-right')) {
-  @if type-of($properties) != list {
-    $properties: ($properties);
-  }
 
-  @if $size == big {
-    @if $grid-container-margin != $grid-container-margin-big {
-      @each $property in $properties {
-        #{$property}: $grid-container-margin-big;
-      }
-    }
-  } @else if $size == small {
-    @if $grid-container-margin != $grid-container-margin-small {
-      @each $property in $properties {
-        #{$property}: $grid-container-margin-small;
-      }
-    }
-  } @else if $size == normal {
-    @if $grid-container-margin > 0 {
-      @each $property in $properties {
-        #{$property}: $grid-container-margin;
-      }
-    }
-  }
-}
-
-@mixin container-padding($size: normal, $properties: ('padding-left', 'padding-right')) {
-  @if type-of($properties) != list {
-    $properties: ($properties);
-  }
-
-  box-sizing: border-box;
-
-  @if $size == big {
-    @if $grid-container-padding != $grid-container-padding-big {
-      @each $property in $properties {
-        #{$property}: $grid-container-padding-big;
-      }
-    }
-  } @else if $size == small {
-    @if $grid-container-padding != $grid-container-padding-small {
-      @each $property in $properties {
-        #{$property}: $grid-container-padding-small;
-      }
-    }
-  } @else if $size == normal {
-    @if $grid-container-padding > 0 {
-      @each $property in $properties {
-        #{$property}: $grid-container-padding;
-      }
-    }
-  }
-}
-
-@mixin breakout-margin($size: normal, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
-  @if $size == big {
-    @include breakout($grid-container-margin-big);
-  } @else if $size == small {
-    @include breakout($grid-container-margin-small);
-  } @else if $size == normal {
-    @include breakout($grid-container-margin);
-  }
-}
-
-@mixin breakout-padding($size: normal, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
-  @if $size == big {
-    @include breakout($grid-container-padding-big);
-  } @else if $size == small {
-    @include breakout($grid-container-padding-small);
-  } @else if $size == normal {
-    @include breakout($grid-container-padding);
-  }
-}
-
-@mixin breakout($amount, $offset-property: margin-left, $size-property: width, $size-base: 100%) {
-  #{$offset-property}: -$amount;
-  #{$size-property}: calc(#{$size-base} + #{2 * $amount});
-}
-
+/// Adds a "clearfix", preventing floating issues.
+/// Note: consider using more modern alternatives to float (flex/grid).
 @mixin clearfix {
   &:after {
     clear: both;
@@ -165,6 +151,105 @@ $grid-margin-10: 100px !default;
   }
 }
 
+
+/// Sets `$grid-container-margin`, `$grid-container-margin-big` or `$grid-container-margin-small` (based on `$size`) to
+/// `$properties`, adding a margin.
+///
+/// @param {string} $size ['normal'] - Container size preset.
+/// @param {list | string} $properties [('margin-left', 'margin-right')] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin container-margin($size: 'normal', $properties: ('margin-left', 'margin-right'), $force: false) {
+  @if $size == big {
+    @if $grid-container-margin != $grid-container-margin-big {
+      @include properties($properties, $grid-container-margin-big, $force)
+    }
+  } @else if $size == small {
+    @if $grid-container-margin != $grid-container-margin-small {
+      @include properties($properties, $grid-container-margin-small, $force)
+    }
+  } @else if $size == normal {
+    @if $grid-container-margin > 0 {
+      @include properties($properties, $grid-container-margin, $force)
+    }
+  }
+}
+
+
+/// Sets `$grid-container-padding`, `$grid-container-padding-big` or `$grid-container-padding-small` (based on `$size`)
+/// to `$properties`, adding a margin.
+///
+/// @param {string} $size ['normal'] - Container size preset.
+/// @param {list | string} $properties [('padding-left', 'padding-right')] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin container-padding($size: normal, $properties: ('padding-left', 'padding-right'), $force: false) {
+  box-sizing: border-box;
+
+  @if $size == big {
+    @if $grid-container-padding != $grid-container-padding-big {
+      @include properties($properties, $grid-container-padding-big, $force)
+    }
+  } @else if $size == small {
+    @if $grid-container-padding != $grid-container-padding-small {
+      @include properties($properties, $grid-container-padding-small, $force)
+
+    }
+  } @else if $size == normal {
+    @if $grid-container-padding > 0 {
+      @include properties($properties, $grid-container-padding, $force)
+    }
+  }
+}
+
+
+/// Compensates for the offset (margin) applied to the container (breaking out of the container).
+///
+/// @param {string} $size ['normal'] - Container size preset.
+/// @param {string} $offset-properties ['margin-left'] - One or more properties to use for offset compensation.
+/// @param {string} $size-properties ['width'] - One or more properties to use for size adjustment.
+/// @param {number} $size-base [100%] - Base size.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin breakout-margin($size: 'normal', $offset-properties: 'margin-left', $size-properties: 'width', $size-base: 100%, $force: false) {
+  @if $size == big {
+    @include breakout($grid-container-margin-big, $offset-properties, $size-properties, $size-base, $force);
+  } @else if $size == small {
+    @include breakout($grid-container-margin-small, $offset-properties, $size-properties, $size-base, $force);
+  } @else if $size == normal {
+    @include breakout($grid-container-margin, $offset-properties, $size-properties, $size-base, $force);
+  }
+}
+
+
+/// Compensates for the offset (padding) applied to the container (breaking out of the container).
+///
+/// @param {string} $size ['normal'] - Container size preset.
+/// @param {string} $offset-properties ['margin-left'] - One or more properties to use for offset compensation.
+/// @param {string} $size-properties ['width'] - One or more properties to use for size adjustment.
+/// @param {number} $size-base [100%] - Base size.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin breakout-padding($size: 'normal', $offset-properties: 'margin-left', $size-properties: 'width', $size-base: 100%, $force: false) {
+  @if $size == big {
+    @include breakout($grid-container-padding-big, $offset-properties, $size-properties, $size-base, $force);
+  } @else if $size == small {
+    @include breakout($grid-container-padding-small, $offset-properties, $size-properties, $size-base, $force);
+  } @else if $size == normal {
+    @include breakout($grid-container-padding, $offset-properties, $size-properties, $size-base, $force);
+  }
+}
+
+
+/// Compensates for the offset applied to the container (breaking out of the container).
+///
+/// @param {number} $amount
+/// @param {string} $offset-properties ['margin-left'] - One or more properties to use for offset compensation.
+/// @param {string} $size-properties ['width'] - One or more properties to use for size adjustment.
+/// @param {number} $size-base [100%] - Base size.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin breakout($amount, $offset-properties: 'margin-left', $size-properties: 'width', $size-base: 100%, $force: false) {
+  @include properties($offset-properties, -$amount, $force);
+  @include properties($size-properties, calc(#{$size-base} + #{2 * $amount}), $force);
+}
+
+
 /// Shorthand for columns-responsive and omega-smart.
 /// Sets columns "span" to element and automatically Sets margin-right to 0 if the element is expected to be the last
 /// within a row.
@@ -172,7 +257,7 @@ $grid-margin-10: 100px !default;
 /// Element is expected to be last if the corresponding span times the "nth-child" equals the corresponding "columns"
 /// setting. This assumes all columns to have the same span.
 ///
-/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
+/// Additionally, `clear: left;` is set to the first element after an element found to be the last within a row.
 ///
 /// @param {number} $span-mobile - Mobile element span.
 /// @param {number} $span-tablet - Tablet element span.
@@ -183,196 +268,99 @@ $grid-margin-10: 100px !default;
   @include omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop);
 }
 
-@mixin columns-responsive($span-mobile, $span-tablet, $span-laptop: $span-tablet, $span-desktop: $span-laptop, $correction-mobile: 0px, $correction-tablet: $correction-mobile, $correction-laptop: $correction-tablet, $correction-desktop: $correction-laptop, $property: width) {
-  $width-mobile: _columns($span-mobile, $grid-columns-mobile, $grid-gutter-mobile, $correction-mobile);
-  $width-tablet: _columns($span-tablet, $grid-columns-tablet, $grid-gutter-tablet, $correction-tablet);
-  $width-laptop: _columns($span-laptop, $grid-columns-laptop, $grid-gutter-laptop, $correction-laptop);
-  $width-desktop: _columns($span-desktop, $grid-columns-desktop, $grid-gutter-desktop, $correction-desktop);
-  @include responsive($property, $width-mobile, $width-tablet, $width-laptop, $width-desktop);
+
+/// Sets the column span and gutter for each breakpoint preset at once.
+///
+/// @param {number} $span-mobile - Mobile column span.
+/// @param {number} $span-tablet - Tablet column span.
+/// @param {number} $span-laptop - Laptop column span.
+/// @param {number} $span-desktop - Desktop column span.
+/// @param {number} $correction-mobile [0px] - Mobile correction.
+/// @param {number} $correction-tablet [$correction-mobile] - Tablet correction.
+/// @param {number} $correction-laptop [$correction-tablet] - Laptop correction.
+/// @param {number} $correction-desktop [$correction-laptop] - Desktop correction.
+/// @param {list | string} $properties ['width'] - One or more properties to set.
+@mixin columns-responsive($span-mobile, $span-tablet, $span-laptop: $span-tablet, $span-desktop: $span-laptop, $correction-mobile: 0px, $correction-tablet: $correction-mobile, $correction-laptop: $correction-tablet, $correction-desktop: $correction-laptop, $properties: 'width') {
+  $width-mobile: columns($span-mobile, $grid-columns-mobile, $grid-gutter-mobile, $correction-mobile);
+  $width-tablet: columns($span-tablet, $grid-columns-tablet, $grid-gutter-tablet, $correction-tablet);
+  $width-laptop: columns($span-laptop, $grid-columns-laptop, $grid-gutter-laptop, $correction-laptop);
+  $width-desktop: columns($span-desktop, $grid-columns-desktop, $grid-gutter-desktop, $correction-desktop);
+  @include responsive($properties, $width-mobile, $width-tablet, $width-laptop, $width-desktop);
 
   @include mobile-only {
-    @include _columns-layout($grid-gutter-mobile)
+    @include columns-layout($grid-gutter-mobile)
   }
 
   @include tablet(true) {
-    @include _columns-layout($grid-gutter-tablet)
+    @include columns-layout($grid-gutter-tablet)
   }
 
   @include laptop(true) {
-    @include _columns-layout($grid-gutter-laptop)
+    @include columns-layout($grid-gutter-laptop)
   }
 
   @include desktop {
-    @include _columns-layout($grid-gutter-desktop)
+    @include columns-layout($grid-gutter-desktop)
   }
 }
 
+
+/// Sets the column `$span` and `$gutter` for the (mobile) breakpoint breakpoint preset.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $correction [0px] - Correction.
+/// @param {number} $gutter [$grid-gutter-mobile] - Gutter size.
 @mixin columns-mobile($span, $correction: 0px, $gutter: $grid-gutter-mobile) {
   @include mobile-only {
-    @include _columns($span, $grid-columns-mobile, $gutter, auto, width, $correction);
+    @include columns($span, $grid-columns-mobile, $gutter, auto, width, $correction);
   }
 }
 
+
+/// Sets the column `$span` and `$gutter` for the (tablet) breakpoint breakpoint preset.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $correction [0px] - Correction.
+/// @param {number} $gutter [$grid-gutter-mobile] - Gutter size.
 @mixin columns-tablet($span, $correction: 0px, $gutter: $grid-gutter-tablet) {
   @include tablet(true) {
-    @include _columns($span, $grid-columns-tablet, $gutter, auto, width, $correction);
+    @include columns($span, $grid-columns-tablet, $gutter, auto, width, $correction);
   }
 }
 
+
+/// Sets the column `$span` and `$gutter` for the (laptop) breakpoint breakpoint preset.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $correction [0px] - Correction.
+/// @param {number} $gutter [$grid-gutter-mobile] - Gutter size.
 @mixin columns-laptop($span, $correction: 0px, $gutter: $grid-gutter-laptop) {
   @include laptop(true) {
-    @include _columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
+    @include columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
   }
 }
 
+
+/// Sets the column `$span` and `$gutter` for the (desktop) breakpoint breakpoint preset.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $correction [0px] - Correction.
+/// @param {number} $gutter [$grid-gutter-mobile] - Gutter size.
 @mixin columns-desktop($span, $correction: 0px, $gutter: $grid-gutter-desktop) {
   @include desktop() {
-    @include _columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
+    @include columns($span, $grid-columns-laptop, $gutter, auto, width, $correction);
   }
 }
 
-/// Adds a gutter (space between columns) to element.
+
+/// Returns the value for a given (column) $span and $gutter.
 ///
-/// @param {string} $property [margin-right] - Property to set.
-/// @param {number} $multiplier [1] - The amount of times the gutter size is applied.
-@mixin gutter($property: margin-right, $multiplier: 1) {
-  @include responsive($property, $grid-gutter-mobile * $multiplier, $grid-gutter-tablet * $multiplier, $grid-gutter-laptop * $multiplier, $grid-gutter-desktop * $multiplier);
-}
-
-/// Applies rows height by setting each value in $properties to $span * $grid-row-height.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Amount of rows.
-/// @param {list | string} $properties [height] - One or more properties to set.
-/// @param {boolean} $force [false] - Whether to use !important.
-@mixin rows($span, $properties: height, $force: false) {
-  @if type-of($properties) != list {
-    $properties: ($properties);
-  }
-
-  @if $force == true {
-    @each $property in $properties {
-      #{$property}: $span * $grid-row-height !important;
-    }
-  } @else {
-    @each $property in $properties {
-      #{$property}: $span * $grid-row-height;
-    }
-  }
-}
-
-/// Sets $property (defaults to margin-right) to 0, typically used for clearing gutter margin.
-/// Adds !important if $force equals true.
-///
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set.
-@mixin omega($force: false, $property: margin-right) {
-  @if $force == true {
-    #{$property}: 0 !important;
-  } @else {
-    #{$property}: 0;
-  }
-}
-
-/// Automatically Sets $property to 0 if the element is expected to be the last within a row.
-///
-/// Element is expected to be last if the corresponding "span" times the "nth-child" equals the corresponding "columns"
-/// setting. This assumes all columns to have the same span.
-///
-/// Additionally, clear: left; is set to the first element after an element found to be the last within a row.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span-mobile - Mobile element span.
-/// @param {number} $span-tablet - Tablet element span.
-/// @param {number} $span-laptop - Laptop element span.
-/// @param {number} $span-desktop - Desktop element span.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-@mixin omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop, $force: false, $property: margin-right) {
-  @include mobile-only {
-    @include omega-smart-mobile($span-mobile, $force, $property)
-  }
-  @include tablet(true) {
-    @include omega-smart-tablet($span-tablet, $force, $property)
-  }
-  @include laptop(true) {
-    @include omega-smart-laptop($span-laptop, $force, $property)
-  }
-  @include desktop {
-    @include omega-smart-desktop($span-desktop, $force, $property)
-  }
-}
-
-/// Applies omega-smart to the mobile breakpoint.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Element span.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-/// @see {mixin} omega-smart for usage.
-@mixin omega-smart-mobile($span, $force: false, $property: margin-right) {
-  @include _omega-smart($span, $grid-columns-mobile, $force, $property);
-}
-
-/// Applies omega-smart to the tablet breakpoint.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Element span.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-/// @see {mixin} omega-smart for usage.
-@mixin omega-smart-tablet($span, $force: false, $property: margin-right) {
-  @include _omega-smart($span, $grid-columns-tablet, $force, $property);
-}
-
-/// Applies omega-smart to the laptop breakpoint.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Element span.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-/// @see {mixin} omega-smart for usage.
-@mixin omega-smart-laptop($span, $force: false, $property: margin-right) {
-  @include _omega-smart($span, $grid-columns-laptop, $force, $property);
-}
-
-/// Applies omega-smart to the desktop breakpoint.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Element span.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-/// @see {mixin} omega-smart for usage.
-@mixin omega-smart-desktop($span, $force: false, $property: margin-right) {
-  @include _omega-smart($span, $grid-columns-desktop, $force, $property);
-}
-
-/// Applies omega-smart.
-/// Adds !important if $force equals true.
-///
-/// @param {number} $span - Element span.
-/// @param {total} $span - Total number of columns within a row.
-/// @param {boolean} $force [false] - Whether to use !important.
-/// @param {string} $property [margin-right] - Property to set to 0 if element is last column.
-/// @see {mixin} omega-smart for usage.
-@mixin _omega-smart($span, $total, $force: false, $property: margin-right) {
-  @if $span == $total {
-    @include omega($force, $property)
-  } @else {
-    $columns: $total / $span;
-
-    &:nth-child(#{$columns}n) {
-      @include omega($force, $property);
-    }
-
-    &:nth-child(#{$columns}n+1) {
-      clear: left;
-    }
-  }
-}
-
-// Private API
-@function _columns($span, $total, $gutter, $correction: 0px) {
+/// @param {number} $span - Column span.
+/// @param {number} $total - Total number of columns within a row.
+/// @param {number} $gutter - Gutter size.
+/// @param {number} $correction [0px] - Correction.
+/// @return {string} - Value calculation.
+@function columns($span, $total, $gutter, $correction: 0px) {
   @if $span == $total {
     @return 100%;
   }
@@ -383,15 +371,26 @@ $grid-margin-10: 100px !default;
   @return calc((100% - #{$total_gutter_width}) / #{$total / $span} + #{$gutters * $gutter + $correction});
 }
 
-@mixin _columns($span, $total, $gutter, $omega: auto, $property: width, $correction: 0px) {
-  @include _columns-layout($gutter, $omega);
-  $gutters: $span - 1;
-  $total_gutters: $total - 1;
-  $total_gutter_width: $total_gutters * $gutter;
-  #{$property}: _columns($span, $total, $gutter, $correction);
+
+/// Sets the column `$span` and `$gutter`.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $total - Total number of columns within a row.
+/// @param {number} $gutter - Gutter size.
+/// @param {string | boolean} $omega ['auto'] - Whether the element is the last column, "auto" checks using :last-child.
+/// @param {list | string} $properties ['width'] - One or more properties to set.
+/// @param {number} $correction [0px] - Correction.
+@mixin columns($span, $total, $gutter, $omega: 'auto', $properties: 'width', $correction: 0px) {
+  @include columns-layout($gutter, $omega);
+  @include properties($properties, columns($span, $total, $gutter, $correction));
 }
 
-@mixin _columns-layout($gutter, $omega: auto) {
+
+/// Sets the properties required to make a column behave correctly within it's container.
+///
+/// @param {number} $gutter - Gutter size.
+/// @param {string | boolean} $omega ['auto'] - Whether the element is the last column, "auto" checks using :last-child.
+@mixin columns-layout($gutter, $omega: auto) {
   box-sizing: border-box;
   float: left;
 
@@ -406,4 +405,130 @@ $grid-margin-10: 100px !default;
       @include omega;
     }
   }
+}
+
+
+/// Adds a gutter (space between columns).
+///
+/// @param {list | string} $properties ['margin-right'] - One or more properties to set.
+/// @param {number} $multiplier [1] - The amount of times the gutter size is applied.
+@mixin gutter($properties: 'margin-right', $multiplier: 1) {
+  @include responsive($properties, $grid-gutter-mobile * $multiplier, $grid-gutter-tablet * $multiplier, $grid-gutter-laptop * $multiplier, $grid-gutter-desktop * $multiplier);
+}
+
+
+/// Sets all `$properties` to 0, typically used for clearing gutter margin.
+///
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+@mixin omega($force: false, $properties: 'margin-right') {
+  @include properties($properties, 0, $force);
+}
+
+
+/// Sets all `$properties` to 0 if the element is expected to be the last within a row.
+///
+/// Element is expected to be last if the corresponding "span" times the "nth-child" equals the corresponding "columns"
+/// setting. This assumes all columns to have the same span.
+///
+/// Additionally, `clear: left;` is set to the first element after an element found to be the last within a row.
+/// Adds !important if `$force` equals true.
+///
+/// @param {number} $span-mobile - Mobile element span.
+/// @param {number} $span-tablet - Tablet element span.
+/// @param {number} $span-laptop - Laptop element span.
+/// @param {number} $span-desktop - Desktop element span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+@mixin omega-smart($span-mobile, $span-tablet, $span-laptop, $span-desktop, $force: false, $properties: 'margin-right') {
+  @include mobile-only {
+    @include omega-smart-mobile($span-mobile, $force, $properties)
+  }
+  @include tablet(true) {
+    @include omega-smart-tablet($span-tablet, $force, $properties)
+  }
+  @include laptop(true) {
+    @include omega-smart-laptop($span-laptop, $force, $properties)
+  }
+  @include desktop {
+    @include omega-smart-desktop($span-desktop, $force, $properties)
+  }
+}
+
+
+/// Applies `omega-smart` to the (mobile) breakpoint.
+///
+/// @param {number} $span - Column span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+/// @see {mixin} omega-smart for usage.
+@mixin omega-smart-mobile($span, $force: false, $properties: 'margin-right') {
+  @include omega-smart($span, $grid-columns-mobile, $force, $properties);
+}
+
+
+/// Applies `omega-smart` to the (tablet) breakpoint.
+///
+/// @param {number} $span - Column span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+/// @see {mixin} omega-smart for usage.
+@mixin omega-smart-tablet($span, $force: false, $properties: 'margin-right') {
+  @include omega-smart($span, $grid-columns-tablet, $force, $properties);
+}
+
+
+/// Applies `omega-smart` to the (laptop) breakpoint.
+///
+/// @param {number} $span - Column span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+/// @see {mixin} omega-smart for usage.
+@mixin omega-smart-laptop($span, $force: false, $properties: 'margin-right') {
+  @include omega-smart($span, $grid-columns-laptop, $force, $properties);
+}
+
+
+/// Applies `omega-smart` to the (desktop) breakpoint.
+///
+/// @param {number} $span - Column span.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+/// @see {mixin} omega-smart for usage.
+@mixin omega-smart-desktop($span, $force: false, $properties: 'margin-right') {
+  @include omega-smart($span, $grid-columns-desktop, $force, $properties);
+}
+
+
+/// Applies omega if column is expected to be the last within the row.
+/// Adds !important if `$force` equals true.
+///
+/// @param {number} $span - Column span.
+/// @param {number} $total - Total number of columns within a row.
+/// @param {boolean} $force [false] - Whether to use !important.
+/// @param {list | string} $properties [margin-right] - One or more properties to set.
+@mixin omega-smart($span, $total, $force: false, $properties: 'margin-right') {
+  @if $span == $total {
+    @include omega($force, $properties)
+  } @else {
+    $columns: $total / $span;
+
+    &:nth-child(#{$columns}n) {
+      @include omega($force, $properties);
+    }
+
+    &:nth-child(#{$columns}n+1) {
+      clear: left;
+    }
+  }
+}
+
+
+/// Applies row height by setting each value in `$properties` to `$span * $grid-row-height`.
+///
+/// @param {number} $span - Amount of rows.
+/// @param {list | string} $properties [height] - One or more properties to set.
+/// @param {boolean} $force [false] - Whether to use !important.
+@mixin rows($span, $properties: 'height', $force: false) {
+  @include properties($properties, $span * $grid-row-height, $force);
 }

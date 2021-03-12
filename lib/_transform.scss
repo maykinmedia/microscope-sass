@@ -1,60 +1,35 @@
-@mixin overlay {
-  @include absolute(0px, 0px);
-  width: 100%;
-  height: 100%;
-}
+////
+/// Microscope(-sass) transform library.
+/// @group transform
+////
 
-@mixin rounded {
-  border-radius: 100%;
-}
+/// @name Import transform library.
+/// @example @import '~microscope-sass/lib/transform';
 
-@mixin center-h($width: null, $height: null) {
-  @include absolute(null, 50%);
-  @include translate(-50%);
+@import 'color';
+@import 'util';
 
-  @if $width {
-    width: $width;
-  }
 
-  @if $height {
-    height: $height;
-  }
-}
+///
+$transform-shadow-default-color: rgba($color-black, 0.15) !default;
+///
+$transform-shadow-default-offset-x: 0 !default;
+///
+$transform-shadow-default-offset-y: 0.5rem !default;
+///
+$transform-shadow-default-blur: 1rem !default;
+///
+$transform-shadow-default-spread: 0 !default;
 
-@mixin center-v($width: null, $height: null) {
-  @include absolute(50%);
-  @include translate(null, -50%);
-
-  @if $width {
-    width: $width;
-  }
-
-  @if $height {
-    height: $height;
-  }
-}
-
-@mixin center-hv($width: null, $height: null) {
-  @include absolute(50%, 50%);
-  @include translate(-50%, -50%);
-
-  @if $width {
-    width: $width;
-  }
-
-  @if $height {
-    height: $height;
-  }
-}
 
 /// Applies absolute position to position specified by one of the arguments.
 /// If an argument is set to null (default) the property is not set.
 /// Note: order differs from traditional top, right, bottom left syntax.
 ///
-/// @param {number (with unit)} $top [null] - Value for top.
-/// @param {number (with unit)} $left [null] - Value for left.
-/// @param {number (with unit)} $right [null] - Value for right.
-/// @param {number (with unit)} $bottom [null] - Value for bottom.
+/// @param {number} $top [null] - Value for top.
+/// @param {number} $left [null] - Value for left.
+/// @param {number} $right [null] - Value for right.
+/// @param {number} $bottom [null] - Value for bottom.
 @mixin absolute($top: null, $left: null, $right: null, $bottom: null) {
   position: absolute;
 
@@ -76,11 +51,117 @@
 }
 
 
+/// Applies an aspect ratio (e.g. 4:3, or 21) to element by adding a vertical padding and setting the height to 0.
+/// This requires a child elements to be positioned on top of this element (e.g. `@include overlay;`).
+///
+/// @param {number} $width [null] - Value for width.
+/// @param {number} $height [null] - Value for height.
+/// @param {list | string} $properties [padding-top] - One or more properties to set.
+/// @param {string | boolean} $clear-height ['auto'] - Whether to set the height to 0.
+@mixin aspect-ratio($width, $height, $properties: padding-top, $clear-height: auto) {
+  @include properties($properties, percentage($height / $width));
+
+  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
+    height: 0;
+  }
+}
+
+
+/// Centers the element horizontally using absolute positioning and a translation.
+///
+/// @param {number} $width [null] - Value for width.
+/// @param {number} $height [null] - Value for height.
+@mixin center-h($width: null, $height: null) {
+  @include absolute(null, 50%);
+  @include translate(-50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+
+/// Centers the element vertically using absolute positioning and a translation.
+///
+/// @param {number} $width [null] - Value for width.
+/// @param {number} $height [null] - Value for height.
+@mixin center-v($width: null, $height: null) {
+  @include absolute(50%);
+  @include translate(null, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+
+/// Centers the element horizontally and vertically using absolute positioning and a translation.
+///
+/// @param {number} $width [null] - Value for width.
+/// @param {number} $height [null] - Value for height.
+@mixin center-hv($width: null, $height: null) {
+  @include absolute(50%, 50%);
+  @include translate(-50%, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+
+/// Positions the element on top of the parent element.
+/// Requires the parent to haven a position set.
+@mixin overlay {
+  @include absolute(0px, 0px);
+  width: 100%;
+  height: 100%;
+}
+
+
+/// Adds a border-radius of 100%, resulting in a rounded element.
+@mixin rounded {
+  border-radius: 100%;
+}
+
+
+/// Adds a (box) shadow.
+///
+/// @param {string} $position ['bottom] - Can be one of: 'all', 'top', 'right', bottom' or 'left'.
+/// @param {color} $color [$transform-shadow-default-color] - Color of the shadow.
+/// @param {number} $offset-x [$transform-shadow-default-offset-x] - X offset of the shadow.
+/// @param {number} $offset-y [$transform-shadow-default-offset-y] - X offset of the shadow.
+/// @param {number} $blur [$transform-shadow-default-blur] - Blur amount of the shadow.
+/// @param {number} $spread [$transform-shadow-default-spread] - Spread amount of the shadow.
+@mixin shadow($color: $transform-shadow-default-color, $offset-x: $transform-shadow-default-offset-x, $offset-y: $transform-shadow-default-offset-y, $blur: $transform-shadow-default-blur, $spread: $transform-shadow-default-spread) {
+  box-shadow: $offset-x $offset-y $blur $spread $color;
+}
+
+
+/// Returns the (transform) value for a given rotation.
+///
+/// @param {number} $deg - Degrees of rotation.
+/// @return {string} - Transform value.
 @function tr_rotate($deg) {
   @return rotate(#{$deg}deg);
 }
 
 
+/// Rotates the element.
+///
+/// @param {number} $deg - Degrees of rotation.
+/// @param {string} $origin - The origin for an element's transformations.
 @mixin rotate($deg, $origin: center) {
   transform: tr_rotate($deg);
 
@@ -90,6 +171,11 @@
 }
 
 
+/// Returns the (transform) value for a given scale.
+///
+/// @param {number} $sx - X scale factor.
+/// @param {number} $sy [null] - Y scale factor, if omitted: $sx scale factor is applied to both x and y.
+/// @return {string} - Transform value.
 @function tr_scale($sx, $sy: null) {
   @if $sx and $sy {
     @return scale(#{$sx}, #{$sy});
@@ -99,11 +185,20 @@
 }
 
 
+/// Scales the element.
+///
+/// @param {number} $sx - X scale factor.
+/// @param {number} $sy [null] - Y scale factor, if omitted: $sx scale factor is applied to both x and y.
 @mixin scale($sx, $sy: null) {
   transform: tr_scale($sx, $sy);
 }
 
 
+/// Returns the (transform) value for a given translation.
+///
+/// @param {number} $x [null] - X translation amount.
+/// @param {number} $y [null] - Y translation amount.
+/// @return {string} - Transform value.
 @function tr_translate($x: null, $y: null) {
   @if $x and $y {
     @return translate(#{$x}, #{$y});
@@ -115,6 +210,10 @@
 }
 
 
+/// Translates the element.
+///
+/// @param {number} $x [null] - X translation amount.
+/// @param {number} $y [null] - Y translation amount.
 @mixin translate($x: null, $y: null) {
   transform: tr_translate($x, $y);
 }

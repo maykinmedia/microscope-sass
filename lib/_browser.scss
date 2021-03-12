@@ -1,3 +1,15 @@
+////
+/// Microscope(-sass) browser library.
+/// @group browser
+////
+
+/// @name Import browser library.
+/// @example @import '~microscope-sass/lib/browser';
+
+
+/// Applies content block only on Internet Explorer 11.
+///
+/// @content Rules to apply when browser meets condition.
 @mixin ie11 {
   @media all and (-ms-high-contrast: none) {
     @at-root {
