@@ -6,10 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2021-03-17
+### Changed
+- Animation: Fix incorrect default value for `$properties` argument in `animate` mixin.
+
 ## [1.0.0] - 2021-03-12
 ### Added
 - Project: documentation for all functions/mixins, available at https://maykinmedia.github.io/microscope-sass/.
-- Util: `strip-unit` mixin.
+- Util: `strip-unit` function.
 
 ### Changed
 - Project: multiple mixins keyword(s) containing "property" are renamed as plural (e.g. `$property` -> `$properties`).
