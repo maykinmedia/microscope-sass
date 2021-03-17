@@ -25,7 +25,7 @@ $animation-default-function: ease-in-out !default;
 /// @param {number} $duration [$animation-default-duration-fast] - The length of time that an animation takes to complete one.
 /// @param {number} $delay [$animation-default-delay] - The amount of time to wait before beginning to perform the animation.
 /// @param {string} $function [$animation-default-function] - The "animation-timing-function" to use.
-@mixin animate($properties: 'all', $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
+@mixin animate($properties: all, $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
   transition: $properties $duration $function $delay;
 }
 
