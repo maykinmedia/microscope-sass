@@ -1,5 +1,8 @@
 ### Dependencies ###
 node_modules/
 
+### Environment ###
+**/*.DS_Store
+
 ### IDE ###
 .idea
