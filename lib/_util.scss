@@ -41,7 +41,7 @@
 
 
 /// Replace `$search` with `$replace` in `$string`.
-/// @author Hugo Giraudel.
+/// @author Kitty Giraudel.
 /// @param {string} $string - Initial string.
 /// @param {string} $search - Substring to replace.
 /// @param {string} $replace ('') - New value.
@@ -58,7 +58,7 @@
 
 
 /// Remove the unit of a length.
-/// @author Hugo Giraudel.
+/// @author Kitty Giraudel.
 /// @param {numer} $number - Number to remove unit from.
 /// @return {number} - Unitless number.
 @function strip-unit($number) {
