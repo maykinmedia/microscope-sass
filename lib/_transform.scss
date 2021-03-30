@@ -61,7 +61,7 @@ $transform-shadow-default-spread: 0 !default;
 @mixin aspect-ratio($width, $height, $properties: padding-top, $clear-height: auto) {
   @include properties($properties, percentage($height / $width));
 
-  @if ($clear-height == auto and ($property == padding-top or $property == padding-bottom) or $clear-height == true) {
+  @if ($clear-height == auto and ($properties == padding-top or $properties == padding-bottom) or $clear-height == true) {
     height: 0;
   }
 }

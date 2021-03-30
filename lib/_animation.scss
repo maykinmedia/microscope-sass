@@ -39,7 +39,7 @@ $animation-default-function: ease-in-out !default;
 /// @param {number} $duration [$animation-default-duration-medium] - The length of time that an animation takes to complete.
 /// @param {number} $delay [$animation-default-delay] - The amount of time to wait before beginning to perform the animation.
 /// @param {string} $function [$animation-default-function] - The "animation-timing-function" to use.
-@mixin fade-in($name, $property: 'opacity', $value-start: 0, $value-end: 1, $duration: $animation-default-duration-medium, $delay: $animation-default-delay, $function: $animation-default-function) {
+@mixin fade-in($name, $property: opacity, $value-start: 0, $value-end: 1, $duration: $animation-default-duration-medium, $delay: $animation-default-delay, $function: $animation-default-function) {
   @include keyframes($name, $property, $value-start, $value-end, $duration, $delay, $function);
 }
 
@@ -53,7 +53,7 @@ $animation-default-function: ease-in-out !default;
 /// @param {number} $duration [$animation-default-duration-fast] - The length of time that an animation takes to complete.
 /// @param {number} $delay [$animation-default-delay] - The amount of time to wait before beginning to perform the animation.
 /// @param {string} $function [$animation-default-function] - The "animation-timing-function" to use.
-@mixin hover-fade($property: 'opacity', $value-start: 1, $value-end: 0.7, $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
+@mixin hover-fade($property: opacity, $value-start: 1, $value-end: 0.7, $duration: $animation-default-duration-fast, $delay: $animation-default-delay, $function: $animation-default-function) {
   @include animate($property, $duration, $delay, $function);
   #{$property}: $value-start;
 
@@ -73,7 +73,7 @@ $animation-default-function: ease-in-out !default;
 /// @param {number} $duration [$animation-default-duration-medium] - The length of time that an animation takes to complete.
 /// @param {number} $delay [$animation-default-delay] - The amount of time to wait before beginning to perform the animation.
 /// @param {string} $function [$animation-default-function] - The "animation-timing-function" to use.
-@mixin ken-burns($name, $origin: 'center', $count: infinite, $value-start: 1, $value-end: 1.1, $duration: $animation-default-duration-slow, $delay: $animation-default-delay, $function: $animation-default-function) {
+@mixin ken-burns($name, $origin: center, $count: infinite, $value-start: 1, $value-end: 1.1, $duration: $animation-default-duration-slow, $delay: $animation-default-delay, $function: $animation-default-function) {
   $duration: $duration * 2; // Duration for each direction.
   @include keyframes($name, transform, scale($value-start), scale($value-end), $duration, $delay, $function);
   animation-direction: alternate;

@@ -463,7 +463,7 @@ $grid-margin-10: 100px !default;
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
 /// @see {mixin} omega-smart for usage.
 @mixin omega-smart-mobile($span, $force: false, $properties: 'margin-right') {
-  @include omega-smart($span, $grid-columns-mobile, $force, $properties);
+  @include omega-nth($span, $grid-columns-mobile, $force, $properties);
 }
 
 
@@ -474,7 +474,7 @@ $grid-margin-10: 100px !default;
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
 /// @see {mixin} omega-smart for usage.
 @mixin omega-smart-tablet($span, $force: false, $properties: 'margin-right') {
-  @include omega-smart($span, $grid-columns-tablet, $force, $properties);
+  @include omega-nth($span, $grid-columns-tablet, $force, $properties);
 }
 
 
@@ -485,7 +485,7 @@ $grid-margin-10: 100px !default;
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
 /// @see {mixin} omega-smart for usage.
 @mixin omega-smart-laptop($span, $force: false, $properties: 'margin-right') {
-  @include omega-smart($span, $grid-columns-laptop, $force, $properties);
+  @include omega-nth($span, $grid-columns-laptop, $force, $properties);
 }
 
 
@@ -496,7 +496,7 @@ $grid-margin-10: 100px !default;
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
 /// @see {mixin} omega-smart for usage.
 @mixin omega-smart-desktop($span, $force: false, $properties: 'margin-right') {
-  @include omega-smart($span, $grid-columns-desktop, $force, $properties);
+  @include omega-nth($span, $grid-columns-desktop, $force, $properties);
 }
 
 
@@ -507,7 +507,7 @@ $grid-margin-10: 100px !default;
 /// @param {number} $total - Total number of columns within a row.
 /// @param {boolean} $force [false] - Whether to use !important.
 /// @param {list | string} $properties [margin-right] - One or more properties to set.
-@mixin omega-smart($span, $total, $force: false, $properties: 'margin-right') {
+@mixin omega-nth($span, $total, $force: false, $properties: 'margin-right') {
   @if $span == $total {
     @include omega($force, $properties)
   } @else {

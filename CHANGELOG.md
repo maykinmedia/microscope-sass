@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2021-03-30
+### Changed
+- Animation: Fix incorrect default value for various argument in various mixins.
+- Grid: Fix mixin clash with `omega-smart` mixin causing various issues with various mixins.
+- Transform: Fix wrong variable name in `aspect-ratio` mixing causing it to break a build.
+
 ## [1.0.2] - 2021-03-19
 ### Changed
 - Grid: Fix missing semicolon causing issues on dart-sass.
