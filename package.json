@@ -1,6 +1,6 @@
 {
   "name": "microscope-sass",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Sass microframework for building scoped user interfaces.",
   "scripts": {
     "build": "npm run generatedocs && npm run generatesettings",

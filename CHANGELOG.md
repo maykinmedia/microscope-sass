@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2021-04-23
+### Changed
+- Grid: Floor `$columns` in `omega-nth` mixin to prevent issues when nth-child() calculation results in floating number.
+
 ## [1.0.3] - 2021-03-30
 ### Changed
 - Animation: Fix incorrect default value for various argument in various mixins.
