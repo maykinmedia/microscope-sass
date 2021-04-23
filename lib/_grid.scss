@@ -511,7 +511,7 @@ $grid-margin-10: 100px !default;
   @if $span == $total {
     @include omega($force, $properties)
   } @else {
-    $columns: $total / $span;
+    $columns: floor($total / $span);
 
     &:nth-child(#{$columns}n) {
       @include omega($force, $properties);
