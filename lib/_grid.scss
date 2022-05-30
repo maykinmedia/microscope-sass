@@ -5,6 +5,7 @@
 
 /// @name Import grid library.
 /// @example @import '~microscope-sass/lib/grid';
+@use "sass:math";
 
 @import 'responsive';
 @import 'util';
@@ -33,7 +34,7 @@ $grid-gutter-desktop: $grid-gutter-base !default;
 $grid-row-height: 40px !default;
 
 ///
-$grid-container-margin-base: $grid-gutter-base / 2 !default;
+$grid-container-margin-base: math.div($grid-gutter-base, 2) !default;
 ///
 $grid-container-padding-base: 0px !default;
 
@@ -368,7 +369,10 @@ $grid-margin-10: 100px !default;
   $gutters: $span - 1;
   $total_gutters: $total - 1;
   $total_gutter_width: $total_gutters * $gutter;
-  @return calc((100% - #{$total_gutter_width}) / #{$total / $span} + #{$gutters * $gutter + $correction});
+  $num: math.div($total, $span);
+  @return calc(
+    (100% - #{$total_gutter_width}) / #{$num} + #{$gutters * $gutter + $correction}
+  );
 }
 
 
@@ -511,7 +515,7 @@ $grid-margin-10: 100px !default;
   @if $span == $total {
     @include omega($force, $properties)
   } @else {
-    $columns: floor($total / $span);
+    $columns: floor(math.div($total, $span));
 
     &:nth-child(#{$columns}n) {
       @include omega($force, $properties);
