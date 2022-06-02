@@ -1,0 +1,38 @@
+# This workflow will publish a package to NPM & publish the documentation when a git tag is pushed.
+
+name: Publish Node.js Package
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14  # stick to older supported LTS version
+      - run: npm ci
+      - run: npm run build
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+
+      - run: npm ci
+      - run: |
+          npm run build
+          npm run publishdocs
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
