@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2022-06-02
+### Changed
+
+* BEM: [#22] Added BEM related mixins
+* Project: Set up Github CI & automated NPM publishing
+* Project: Bumped build dependencies
+* Grid: Replaced occurrences of slash div with math.div
+
 ## [1.0.4] - 2021-04-23
 ### Changed
 - Grid: Floor `$columns` in `omega-nth` mixin to prevent issues when nth-child() calculation results in floating number.
