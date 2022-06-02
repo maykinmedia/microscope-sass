@@ -31,7 +31,12 @@ jobs:
       - run: npm ci
       - run: |
           npm run build
-          npm run publishdocs
+
+      - name: Publish documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./sassdoc
 
       - run: npm publish
         env:
