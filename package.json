@@ -37,5 +37,8 @@
   "homepage": "https://github.com/maykinmedia/microscope-sass#readme",
   "devDependencies": {
     "sassdoc": "^2.7.3"
+  },
+  "peerDependencies": {
+    "sass": ">= 1.57"
   }
 }
